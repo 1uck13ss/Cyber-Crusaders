@@ -1,83 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Game Filtering Frontpage</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 	<header>
-		<h1>Game Filtering Frontpage</h1>
-		<nav>
+		<div class="nav-container">
+		  <div class="logo">
+			<a href="#">CyberCrusaders</a>
+		  </div>
+		  <div class="search-box">
+			<input type="text" placeholder="Search Games">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		  </div>
+		  <nav>
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Games</a></li>
-				<li><a href="#">Reviews</a></li>
-				<li><a href="#">About Us</a></li>
+			  <li><a href="#">Home</a></li>
+			  <li><a href="#">Games</a></li>
+			  <li><a href="#">Reviews</a></li>
+			  <li><a href="#">About</a></li>
+			  <li><a href="#">Contact</a></li>
 			</ul>
-		</nav>
-	</header>
-
-	<main>
-		<section id="filters">
-			<h2>Filters</h2>
-			<label for="category">Category:</label>
-			<select id="category">
-				<option value="">--Select Category--</option>
-				<option value="Action">Action</option>
-				<option value="Adventure">Adventure</option>
-				<option value="Strategy">Strategy</option>
-				<option value="Sports">Sports</option>
-			</select>
-
-			<label for="platform">Platform:</label>
-			<select id="platform">
-				<option value="">--Select Platform--</option>
-				<option value="PC">PC</option>
-				<option value="PlayStation">PlayStation</option>
-				<option value="Xbox">Xbox</option>
-				<option value="Nintendo">Nintendo</option>
-			</select>
-
-			<label for="rating">Minimum Rating:</label>
-			<select id="rating">
-				<option value="">--Select Rating--</option>
-				<option value="5">5</option>
-				<option value="4">4</option>
-				<option value="3">3</option>
-				<option value="2">2</option>
-				<option value="1">1</option>
-			</select>
-		</section>
-
-		<section id="games">
-			<h2>Games</h2>
-			<ul id="game-list">
-				<li class="game">
-					<img src="game1.jpg">
-					<h3>Title of Game 1</h3>
-					<p>Description of Game 1</p>
-					<div class="rating">Rating: 4.5/5</div>
-				</li>
-				<li class="game">
-					<img src="game2.jpg">
-					<h3>Title of Game 2</h3>
-					<p>Description of Game 2</p>
-					<div class="rating">Rating: 3.5/5</div>
-				</li>
-				<li class="game">
-					<img src="game3.jpg">
-					<h3>Title of Game 3</h3>
-					<p>Description of Game 3</p>
-					<div class="rating">Rating: 4/5</div>
-				</li>
-			</ul>
-		</section>
-	</main>
-
-	<footer>
-		<p>&copy; 2023 Game Filtering Frontpage. All Rights Reserved.</p>
-	</footer>
-
-	<script src="script.js"></script>
+		  </nav>
+		</div>
+	  </header>	  
 </body>
-</html>

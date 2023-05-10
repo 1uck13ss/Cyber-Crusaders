@@ -46,6 +46,26 @@ nav a {
 	font-size: 14px;
 }
 
+/* Add some styling to genre-list */
+.genre-list a {
+	padding: 5px 10px;
+	border-radius: 15px;
+	font-size: 14px;
+	color: #0077FF;
+	text-decoration: none;
+}
+
+.genre-list a:hover {
+	background-color: #0077FF;
+	color: #fff;
+}
+
+.genre-list a.active {
+	background-color: #0077FF;
+	color: #fff;
+}
+
+/* product */
 .product-container {
 	display: flex;
 	flex-wrap: wrap;

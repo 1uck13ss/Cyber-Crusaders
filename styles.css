@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 * {background-color: black}
 
 header {
+=======
+header {
+	background-color: #fff;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	padding: 20px;
 	display: flex;
 	justify-content: center;
@@ -9,7 +14,11 @@ header {
 .nav-container {
 	display: flex;
 	justify-content: space-between;
+<<<<<<< HEAD
 	align-items: right;
+=======
+	align-items: center;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	width: 100%;
 	max-width: 1200px;
 }
@@ -17,6 +26,7 @@ header {
 .logo a {
 	font-size: 32px;
 	font-weight: bold;
+<<<<<<< HEAD
 	animation: bgColor 10s infinite linear;
 	text-decoration: none;
 }
@@ -40,24 +50,38 @@ header {
 	  color: #0000FF;
 	}
   }
+=======
+	color: #0077FF;
+	text-decoration: none;
+}
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 
 nav ul {
 	display: flex;
 	list-style: none;
+<<<<<<< HEAD
 	margin-top: 12%;
 	margin-right: 85px;
+=======
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 }
 
 nav li {
 	margin-right: 30px;
 }
 
+<<<<<<< HEAD
 h1 {
 	background-color: #fff;
 }
 nav a {
 	font-size: 16px;
 	color: #ffffff;
+=======
+nav a {
+	font-size: 16px;
+	color: #444444;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	text-decoration: none;
 }
 
@@ -77,12 +101,21 @@ nav a {
 	padding: 5px 10px;
 	border-radius: 15px;
 	font-size: 14px;
+<<<<<<< HEAD
 	color: hsl(0, 0%, 100%);
+=======
+	color: #0077FF;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	text-decoration: none;
 }
 
 .genre-list a:hover {
+<<<<<<< HEAD
 	background-color: #ffffff;
+=======
+	background-color: #0077FF;
+	color: #fff;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 }
 
 .genre-list a.active {
@@ -95,7 +128,11 @@ nav a {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+<<<<<<< HEAD
 	padding: 30px;
+=======
+	padding: 20px;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 }
 
 .product-row {
@@ -107,6 +144,7 @@ nav a {
 
 .product-item {
 	width: 200px;
+<<<<<<< HEAD
 	height: 250px;
 	background-color: gray;
 	float: left;
@@ -115,6 +153,10 @@ nav a {
 	border: 2px solid rgb(8, 7, 7);
 	background-clip: content-box; /* <---- */
 	box-shadow: inset 0 0 0 10px rgb(0, 0, 0); /* <-- 10px spread radius */
+=======
+	margin-right: 20px;
+	margin-bottom: 20px;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 }
 
 .product-item:last-child {
@@ -122,7 +164,11 @@ nav a {
 }
 
 .product-item img {
+<<<<<<< HEAD
 	width: auto;
+=======
+	width: 100%;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	height: auto;
 }
 
@@ -144,6 +190,10 @@ nav a {
 	margin: 5px 0 0 0;
 	font-size: 16px;
 	font-weight: bold;
+<<<<<<< HEAD
 	color: #ffffff;
+=======
+	color: #0077FF;
+>>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	text-align: center;
 }

@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 * {background-color: black}
 
 header {
-=======
-header {
-	background-color: #fff;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	padding: 20px;
 	display: flex;
 	justify-content: center;
@@ -14,19 +9,26 @@ header {
 .nav-container {
 	display: flex;
 	justify-content: space-between;
-<<<<<<< HEAD
 	align-items: right;
-=======
-	align-items: center;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	width: 100%;
 	max-width: 1200px;
+}
+
+.logo {
+	display: flex;
+	position: relative;
+	left: 220px;
+	top: 30px;
+}
+
+.logo img {
+	margin-top: 5px; /* Adjust the margin value as desired */
+	margin-right: 15px; /* Optional: Add margin-right to create spacing between the image and the text */
 }
 
 .logo a {
 	font-size: 32px;
 	font-weight: bold;
-<<<<<<< HEAD
 	animation: bgColor 10s infinite linear;
 	text-decoration: none;
 }
@@ -49,73 +51,60 @@ header {
 	75% {
 	  color: #0000FF;
 	}
-  }
-=======
-	color: #0077FF;
-	text-decoration: none;
 }
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 
 nav ul {
 	display: flex;
 	list-style: none;
-<<<<<<< HEAD
-	margin-top: 12%;
-	margin-right: 85px;
-=======
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
+	margin-top: 10%;
+	margin-right: 180px;
 }
 
 nav li {
 	margin-right: 30px;
 }
 
-<<<<<<< HEAD
 h1 {
 	background-color: #fff;
 }
+
 nav a {
 	font-size: 16px;
 	color: #ffffff;
-=======
-nav a {
-	font-size: 16px;
-	color: #444444;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	text-decoration: none;
 }
 
-.genre-list ul {
-	list-style: none;
-	float: left;;
-    margin-right: 20px;
+.genre {
+	color: grey;
+	font-size: 20px;
 }
 
+.genre-list ul {
+	position: fixed;
+	left: 30px;
+	top: 30px;
+	display: flex;
+	flex-direction: column;
+	margin-right: 20px;
+	margin-top: 130px;
+}
+  
+
 .genre-list li {
-	margin-bottom: 10px;
-	font-size: 14px;
+	margin-top: 15px;
+	margin-block: 12px;
 }
 
 /* Add some styling to genre-list */
 .genre-list a {
-	padding: 5px 10px;
 	border-radius: 15px;
-	font-size: 14px;
-<<<<<<< HEAD
+	font-size: 15px;
 	color: hsl(0, 0%, 100%);
-=======
-	color: #0077FF;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	text-decoration: none;
 }
 
 .genre-list a:hover {
-<<<<<<< HEAD
-	background-color: #ffffff;
-=======
-	background-color: #0077FF;
-	color: #fff;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
+	background-color: #665e5e;
 }
 
 .genre-list a.active {
@@ -128,11 +117,7 @@ nav a {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-<<<<<<< HEAD
 	padding: 30px;
-=======
-	padding: 20px;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 }
 
 .product-row {
@@ -144,7 +129,6 @@ nav a {
 
 .product-item {
 	width: 200px;
-<<<<<<< HEAD
 	height: 250px;
 	background-color: gray;
 	float: left;
@@ -153,10 +137,6 @@ nav a {
 	border: 2px solid rgb(8, 7, 7);
 	background-clip: content-box; /* <---- */
 	box-shadow: inset 0 0 0 10px rgb(0, 0, 0); /* <-- 10px spread radius */
-=======
-	margin-right: 20px;
-	margin-bottom: 20px;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 }
 
 .product-item:last-child {
@@ -164,11 +144,7 @@ nav a {
 }
 
 .product-item img {
-<<<<<<< HEAD
 	width: auto;
-=======
-	width: 100%;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	height: auto;
 }
 
@@ -190,10 +166,6 @@ nav a {
 	margin: 5px 0 0 0;
 	font-size: 16px;
 	font-weight: bold;
-<<<<<<< HEAD
 	color: #ffffff;
-=======
-	color: #0077FF;
->>>>>>> 07a1065c8bd443fd0ceb31c8fffc1908e15e3c17
 	text-align: center;
 }

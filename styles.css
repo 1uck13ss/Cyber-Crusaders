@@ -1,7 +1,12 @@
-* {background-color: black}
+
+
+* {
+	background-color: black;
+	font-family: "Chakra Petch";
+	margin-top: 0px;
+}
 
 header {
-	padding: 20px;
 	display: flex;
 	justify-content: center;
 }
@@ -9,16 +14,22 @@ header {
 .nav-container {
 	display: flex;
 	justify-content: space-between;
-	align-items: right;
+	align-items: top;
 	width: 100%;
 	max-width: 1200px;
+	z-index: 100;
+}
+
+.cc {
+	border:none;
 }
 
 .logo {
+	margin-top: 15px;
+	align-items: top;
+	justify-content: center;
 	display: flex;
 	position: relative;
-	left: 220px;
-	top: 30px;
 }
 
 .logo img {
@@ -27,7 +38,10 @@ header {
 }
 
 .logo a {
-	font-size: 32px;
+	font-size: 40px;
+  	color: #fff;
+ 	text-align: center;
+  	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
 	font-weight: bold;
 	animation: bgColor 10s infinite linear;
 	text-decoration: none;
@@ -35,26 +49,6 @@ header {
 	text-align: bottom;
 	margin-top: 25px;
 	margin-left: 25px;
-}
-@keyframes bgColor {
-	12.5% {
-	  color: #FF0000;
-	}
-	25% {
-	  color: #FFA500;
-	}
-	37.5% {
-	  color: #FFFF00;
-	}
-	50% {
-	  color: #7FFF00;
-	}
-	62.5% {
-	  color: #00FFFF;
-	}
-	75% {
-	  color: #0000FF;
-	}
 }
 
 nav ul {
@@ -83,8 +77,12 @@ nav a {
 	font-size: 20px;
 }
 
-.genre-list ul {
+.genre-list ul, .nav-container {
 	position: fixed;
+	z-index: 100px;
+}
+
+.genre-list ul {
 	left: 30px;
 	top: 30px;
 	display: flex;
@@ -121,7 +119,7 @@ nav a {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding: 30px;
+	padding-top: 100px;
 }
 
 .product-row {
@@ -144,29 +142,28 @@ nav a {
     -webkit-animation: blink 8.0s linear infinite;
     animation: blink 8.0s linear infinite;
 	position: relative;
-	z-index : 100px;
 }
 
 @keyframes blink {
     0% {
-        box-shadow: 0 0 20px #75e01d;
+        box-shadow: 0 0 20px lightblue;
     }
     50% {
-        box-shadow: 0 0 3px #75e01d;
+        box-shadow: 0 0 3px lightblue;
     }
     100% {
-        box-shadow: 0 0 20px #75e01d;
+        box-shadow: 0 0 20px lightblue;
     }
 }
 @-webkit-keyframes blink {
     0% {
-        box-shadow: 0 0 20px #75e01d;
+        box-shadow: 0 0 20px lightblue;
     }
     50% {
-        box-shadow: 0 0 3px #75e01d;
+        box-shadow: 0 0 3px lightblue;
     }
     100% {
-        box-shadow: 0 0 20px #75e01d;
+        box-shadow: 0 0 20px lightblue;
     }
 }
 

@@ -1,10 +1,10 @@
-
-
 * {
 	background-color: black;
 	font-family: "Chakra Petch";
 	margin-top: 0px;
 }
+
+li { list-style: none; } 
 
 header {
 	display: flex;
@@ -19,6 +19,13 @@ header {
 	max-width: 1200px;
 	z-index: 100;
 }
+
+.nav-container ul li a:hover,
+.nav-container ul li a.active:hover {
+  background: none;
+  color: rgb(205, 89, 216);
+}
+
 
 .cc {
 	border:none;
@@ -53,7 +60,6 @@ header {
 
 nav ul {
 	display: flex;
-	list-style: none;
 	margin-top: 10%;
 	margin-right: 180px;
 }
@@ -189,7 +195,7 @@ nav a {
 	font-size: 18px;
 	font-weight: bold;
 	text-align: center;
-	color: #fff;
+	color: #ffffff;
 }
 
 .product-info p {
@@ -199,3 +205,132 @@ nav a {
 	color: #ffffff;
 	text-align: center;
 }
+
+/*-----------------------*/
+/*-------FOOTER----------*/
+/*-----------------------*/
+
+.footer-top .container {
+	display: grid;
+	gap: 35px;
+}
+  
+.footer-text { 
+	margin-block: 20px 25px; 
+	color: white;
+}
+  
+.social-media {
+	display: flex;
+	gap: 10px;
+	font-size: 2em;
+}
+
+.Social-media a:hover{
+	box-shadow: inset 4px 4px 6px -2px rgba(0,0,0,0.2),
+				inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+					  -0.5px -0.5px 0px -1px rgba(255,255,255,1),
+					  0.5px 0.5px 0px rgba(0,0,0,0.15),
+					  0px 12px 10px -10px rgba(0,0,0,0.05);
+	border: 1px solid rgba(0, 124, 196, 0.1);
+	transform: translateY(2px);
+}
+  
+a:hover .fa-linkedin{
+	color: #0026ff;
+}
+a:hover .fa-github{
+	color: #171515
+}
+a:hover .fa-telegram{
+	color: #00aeff
+}
+
+
+.footer-list-title {
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 1;
+	position: relative;
+	padding-block-end: 10px;
+	margin-block-end: 20px;
+	max-width: max-content;
+}
+
+.has-before,
+.has-after {
+  position: relative;
+  z-index: 1; /* sets the stacking order */
+}
+
+.has-before::before,
+.has-after::after {
+  content: "";
+  position: absolute;
+}
+
+.footer-list-title::after {
+	bottom: 0;
+	left: 0;
+	width: 50%;
+	height: 4px;
+	background-color: rgb(183, 0, 255);
+}
+
+.footer-link {
+	text-decoration: none;
+	color: rgb(255, 255, 255);
+	transition: 1;
+	margin-left: -40px;
+}
+  
+.footer-link:is(:hover, :focus-visible) { 
+	color: purple;
+	font-weight: bold;
+}
+  
+.contact-item .span {
+	color: purple;
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+  
+.contact-item:not(:last-child) { margin-block-end: 15px; }
+
+.contact-link {
+ color: white;
+}
+
+  
+.input-field {
+	background-color: rgb(245, 245, 245);
+	color: #0073e6;
+	font-size: 15px;
+	padding: 18px 12px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px rgb(4, 255, 42); /* behind the scenes lighting */
+	border: 2px solid rgb(248, 248, 248); /* the frame */
+	margin-block-end: 15px; /* make space between "Your email" and "Subscribe now" */
+	outline: none;
+}
+  
+.input-field::placeholder { color:#0073e6 }
+
+.btn {
+	color:white;
+}
+  
+.copyright { 
+	padding: 20px 5px; /* 1st px = top/btm, 2nd px = left/right */
+	color: white;
+} 
+
+.footer-top .container { grid-template-columns: 1fr 1fr; }
+
+.footer-top .container { grid-template-columns: repeat(4, 1fr); }
+
+/*.footer-top .container { grid-template-columns: 1fr 0.5fr 0.5fr 1fr; }*/
+
+.footer .logo img { width: 170px; }

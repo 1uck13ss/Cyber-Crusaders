@@ -168,10 +168,12 @@ nav a {
     100% {
         box-shadow: 0 0 20px #75e01d;
     }
+}
 
 .product-item:last-child {
 	margin-right: 0;
 }
+
 
 .product-item img {
 	width: auto;

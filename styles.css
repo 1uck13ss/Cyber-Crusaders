@@ -7,17 +7,19 @@
 li { list-style: none; } 
 
 header {
-	display: flex;
+	margin: 0 0;
 	justify-content: center;
 }
 
 .nav-container {
+	position: fixed;
 	display: flex;
+	top: 0;
 	justify-content: space-between;
 	align-items: top;
 	width: 100%;
 	max-width: 1200px;
-	z-index: 100;
+	z-index: 1;
 }
 
 .nav-container ul li a:hover,
@@ -83,25 +85,21 @@ nav a {
 	font-size: 20px;
 }
 
-.genre-list ul, .nav-container {
-	position: fixed;
-	z-index: 100px;
+.genre-list{
+	display: block;
+	margin-right: 40px;
 }
 
 .genre-list ul {
-	left: 30px;
-	top: 30px;
 	display: flex;
 	flex-direction: column;
-	margin-right: 15px;
-	margin-top: 130px;
 }
   
 
 .genre-list li {
-	margin-top: 15px;
-	margin-block: 12px;
+	margin-block: 6px;
 }
+
 
 /* Add some styling to genre-list */
 .genre-list a {
@@ -120,18 +118,18 @@ nav a {
 	color: #fff;
 }
 
+.body-container {
+	margin-top: 130px;
+	display: flex;
+}
+
 /* product */
 .product-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding-top: 100px;
+	display: block;
 }
 
 .product-row {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
 	margin-bottom: 20px;
 }
 
@@ -139,7 +137,6 @@ nav a {
 	width: 200px;
 	height: 250px;
 	background-color: gray;
-	float: left;
 	padding: 2px;
 	padding-bottom: 75px;
 	border: 2px solid rgb(8, 7, 7);
@@ -148,6 +145,7 @@ nav a {
     -webkit-animation: blink 8.0s linear infinite;
     animation: blink 8.0s linear infinite;
 	position: relative;
+	display: inline-block;
 }
 
 @keyframes blink {
@@ -226,7 +224,7 @@ nav a {
 	font-size: 2em;
 }
 
-.Social-media a:hover{
+.social-media a:hover{
 	box-shadow: inset 4px 4px 6px -2px rgba(0,0,0,0.2),
 				inset -4px -4px 6px -1px rgba(255,255,255,0.7),
 					  -0.5px -0.5px 0px -1px rgba(255,255,255,1),
@@ -255,13 +253,12 @@ a:hover .fa-telegram{
 	position: relative;
 	padding-block-end: 10px;
 	margin-block-end: 20px;
-	max-width: max-content;
+	max-width: 100%;
 }
 
 .has-before,
 .has-after {
   position: relative;
-  z-index: 1; /* sets the stacking order */
 }
 
 .has-before::before,
@@ -275,7 +272,7 @@ a:hover .fa-telegram{
 	left: 0;
 	width: 50%;
 	height: 4px;
-	background-color: rgb(183, 0, 255);
+	background-color: #b700ff;
 }
 
 .footer-link {
@@ -285,7 +282,7 @@ a:hover .fa-telegram{
 	margin-left: -40px;
 }
   
-.footer-link:is(:hover, :focus-visible) { 
+.footer-link:hover, .footer-link:focus-visible { 
 	color: purple;
 	font-weight: bold;
 }
@@ -310,7 +307,7 @@ a:hover .fa-telegram{
 	font-size: 15px;
 	padding: 18px 12px;
 	border-radius: 20px;
-	box-shadow: 0 2px 4px rgb(4, 255, 42); /* behind the scenes lighting */
+	box-shadow: 0 2px 4px rgb(4, 255, 42, 0.8); /* behind the scenes lighting */
 	border: 2px solid rgb(248, 248, 248); /* the frame */
 	margin-block-end: 15px; /* make space between "Your email" and "Subscribe now" */
 	outline: none;
@@ -327,10 +324,10 @@ a:hover .fa-telegram{
 	color: white;
 } 
 
-.footer-top .container { grid-template-columns: 1fr 1fr; }
-
 .footer-top .container { grid-template-columns: repeat(4, 1fr); }
 
 /*.footer-top .container { grid-template-columns: 1fr 0.5fr 0.5fr 1fr; }*/
 
 .footer .logo img { width: 170px; }
+
+

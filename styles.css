@@ -12,11 +12,13 @@ header {
 }
 
 .nav-container {
+	position: fixed;
 	display: flex;
 	justify-content: space-between;
 	align-items: top;
 	width: 100%;
 	max-width: 1200px;
+	z-index: 1;
 }
 
 .nav-container ul li a:hover,
@@ -98,6 +100,10 @@ nav a {
 
 .genre-list li {
 	margin-block: 12px;
+}
+
+.genre-list .nav-container {
+	display: inline-flex;
 }
 
 /* Add some styling to genre-list */

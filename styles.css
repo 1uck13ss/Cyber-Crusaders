@@ -7,13 +7,15 @@
 li { list-style: none; } 
 
 header {
-	display: flex;
+	margin: 0 0;
 	justify-content: center;
 }
 
 .nav-container {
 	position: fixed;
+	position: fixed;
 	display: flex;
+	top: 0;
 	justify-content: space-between;
 	align-items: top;
 	width: 100%;
@@ -121,6 +123,11 @@ nav a {
 .genre-list a.active {
 	background-color: #0077FF;
 	color: #fff;
+}
+
+.body-container {
+	margin-top: 130px;
+	display: flex;
 }
 
 /* product */
@@ -256,7 +263,7 @@ a:hover .fa-telegram{
 	position: relative;
 	padding-block-end: 10px;
 	margin-block-end: 20px;
-	max-width: max-content;
+	max-width: 100%;
 }
 
 .has-before,

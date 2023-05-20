@@ -7,16 +7,10 @@ header {
 }
 
 .nav-container {
-<<<<<<< HEAD
 	display: inline-flex;
 	align-items: center;
 	flex-direction: row;
 	justify-content: space-between;
-=======
-	display: flex;
-	justify-content: space-between;
-	align-items: right;
->>>>>>> bfa97dae8310123947434611e18754dfb405ec18
 	width: 100%;
 	max-width: 1200px;
 }
@@ -62,22 +56,13 @@ header {
 	75% {
 	  color: #0000FF;
 	}
-<<<<<<< HEAD
   }
-=======
-}
->>>>>>> bfa97dae8310123947434611e18754dfb405ec18
 
 nav ul {
 	display: flex;
 	list-style: none;
-<<<<<<< HEAD
 	margin-top: 12%;
 	margin-right: 85px;
-=======
-	margin-top: 10%;
-	margin-right: 180px;
->>>>>>> bfa97dae8310123947434611e18754dfb405ec18
 }
 
 nav li {
@@ -118,21 +103,13 @@ nav a {
 /* Add some styling to genre-list */
 .genre-list a {
 	border-radius: 15px;
-<<<<<<< HEAD
 	font-size: 14px;
-=======
-	font-size: 15px;
->>>>>>> bfa97dae8310123947434611e18754dfb405ec18
 	color: hsl(0, 0%, 100%);
 	text-decoration: none;
 }
 
 .genre-list a:hover {
-<<<<<<< HEAD
 	background-color: #ffffff;
-=======
-	background-color: #665e5e;
->>>>>>> bfa97dae8310123947434611e18754dfb405ec18
 }
 
 .genre-list a.active {

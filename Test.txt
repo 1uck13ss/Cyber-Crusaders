@@ -1,1 +1,10 @@
 Test file for pushing and pulling into GitHub
+pull
+1. git pull main origin 
+2. git checkout -b (name of branch)
+
+pushing
+1. edit the code in the side branch
+2. git add .
+3. git commit -m "message"
+4. git push origin main

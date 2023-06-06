@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import logo from "./assets/logo.jpg";
 import footerlogo from "./assets/footerlogo.jpg";
+import Card from "./Card";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
@@ -15,7 +16,8 @@ const App = () => {
     myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
     myHeaders.append("Content-Type", "text/plain");
 
-    var raw = "fields name;";
+    var raw =
+      'fields name, first_release_date, cover.image_id, cover.width, cover.height; limit 8; search "halo";';
 
     var requestOptions = {
       method: "POST",
@@ -31,8 +33,6 @@ const App = () => {
       );
       const responseJson = await response.json();
       setGameList(responseJson);
-      console.log(responseJson);
-      console.log(gameList);
     } catch (error) {
       console.error(error);
     }
@@ -107,114 +107,15 @@ const App = () => {
               </li>
             </ul>
           </div>
+          {/* fields name, release_dates, screenshots, prices */}
           <div className="product-container">
             {gameList.map((game) => (
-              <>
-                <div className="product-row">
-                  <div className="product-item" data-genre="action">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 1"
-                    />
-                    <div className="product-info">
-                      <h3>game.name</h3>
-                      <p>$20.00</p>
-                    </div>
-                  </div>
-                  <div className="product-item" data-genre="adventure">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 2"
-                    />
-                    <div className="product-info">
-                      <h3>Product 2</h3>
-                      <p>$25.00</p>
-                    </div>
-                  </div>
-                  <div className="product-item" data-genre="fighting">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 3"
-                    />
-                    <div className="product-info">
-                      <h3>Product 3</h3>
-                      <p>$30.00</p>
-                    </div>
-                  </div>
-                  <div className="product-item" data-genre="action">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 4"
-                    />
-                    <div className="product-info">
-                      <h3>Product 4</h3>
-                      <p>$35.00</p>
-                    </div>
-                  </div>
-                  <div className="product-item" data-genre="adventure">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 8"
-                    />
-                    <div className="product-info">
-                      <h3>Product 8</h3>
-                      <p>$55.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="product-row">
-                  <div className="product-item" data-genre="adventure">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 5"
-                    />
-                    <div className="product-info">
-                      <h3>Product 5</h3>
-                      <p>$40.00</p>
-                    </div>
-                  </div>
-                  <div className="product-item" data-genre="fighting">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 6"
-                    />
-                    <div className="product-info">
-                      <h3>Product 6</h3>
-                      <p>$45.00</p>
-                    </div>
-                  </div>
-                  <div className="product-item" data-genre="action">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 7"
-                    />
-                    <div className="product-info">
-                      <h3>Product 7</h3>
-                      <p>$50.00</p>
-                    </div>
-                  </div>
-                  <div className="product-item" data-genre="adventure">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 8"
-                    />
-                    <div className="product-info">
-                      <h3>Product 8</h3>
-                      <p>$55.00</p>
-                    </div>
-                  </div>
-                  <div className="product-item" data-genre="adventure">
-                    <img
-                      src="https://via.placeholder.com/200x250.png"
-                      alt="Product 8"
-                    />
-                    <div className="product-info">
-                      <h3>Product 8</h3>
-                      <p>$55.00</p>
-                    </div>
-                  </div>
-                </div>
-              </>
+              <Card
+                key={game.id}
+                name={game.name}
+                first_release_date={game.first_release_date}
+                cover={game.cover.image_id}
+              />
             ))}
           </div>
         </div>

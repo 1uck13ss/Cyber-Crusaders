@@ -24,7 +24,7 @@ Additional features to be completed by the mid of July:
 The website will use the following tech stack:
 1. Web Scraping Framework - Beautiful Soup
 2. Relational Database Management System - MySQL
-3. Web Development Framework - Django
+3. Web Development Framework - Bootstrap
 4. Front-end Frameworks - React
 5. Front-end tools - JavaScript, HTML, CSS
 6. Machine Learning - SciKit

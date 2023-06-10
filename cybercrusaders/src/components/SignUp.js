@@ -21,6 +21,10 @@ function Signup() {
     },
   });
 
+  const handleReset = () => {
+    formik.resetForm();
+  };
+
   return (
     <div>
       <h1 className="text-green text-center font-weight-bold" style={{ fontSize: '40px' }}>
@@ -163,6 +167,7 @@ function Signup() {
               value="Reset"
               className="btn btn-secondary"
               autoComplete="off"
+              onClick={handleReset}
             />
             Already have an account? <Link to="/login">Login</Link>
           </form>

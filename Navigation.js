@@ -1,29 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { Routes, Route } from 'react-router-dom';
 import LoginForm from "./components/LoginForm";
 import Signup from "./components/SignUp";
 import App from "./App";
 
 const Navigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Handle successful login
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  // Handle logout
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-
-  if (isLoggedIn) {
-    // User is logged in, render App component
-    return <App onLogout={handleLogout} />;
-  } else {
-    // User is not logged in, render either LoginForm or Signup component based on the link
-    const isSignup = window.location.pathname === "/signup";
-    return isSignup ? <Signup /> : <LoginForm onLogin={handleLogin} />;
-  }
+  return (
+    <Routes>
+      <Route path="/login" element={<LoginForm />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/" element={<LoginForm />} /> {/* Update the path to "/" */}
+    </Routes>
+  );
 };
 
 export default Navigation;

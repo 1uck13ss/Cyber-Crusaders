@@ -1,35 +1,25 @@
-import React, { useState } from 'react';
-import { validateLoginForm } from '../utils/validation.js';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { validationSchema } from '../utils/validation.js';
 
 function Signup() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-  
-    const formData = {
-      user: username,
-      pass: password,
-    };
-  
-    const errors = validateLoginForm(formData);
-  
-    if (Object.keys(errors).length === 0) {
-      // Perform login logic here
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      username: '',
+      password: '',
+      confirmPassword: '',
+      mobileNumber: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      // Perform signup logic here
       // ...
-  
-      setUsername('');
-      setPassword('');
-    } /*else {
-      setError(errors);
-    }*/
-  };
+      console.log(values);
+    },
+  });
 
   return (
     <div>
@@ -45,7 +35,7 @@ function Signup() {
         <br />
 
         <div className="col-lg-5 m-auto d-block">
-          <form onSubmit={handleFormSubmit} className="bg-light">
+          <form onSubmit={formik.handleSubmit} className="bg-light">
             <div className="form-group">
               <label htmlFor="name" className="font-weight-regular">
                 Name
@@ -56,82 +46,108 @@ function Signup() {
                 className="form-control"
                 id="name"
                 autoComplete="off"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              <span id="Name" className="text-danger font-weight-regular"></span>
+              {formik.touched.name && formik.errors.name && (
+                <span className="text-danger font-weight-regular">{formik.errors.name}</span>
+              )}
             </div>
 
             <div className="form-group">
-              <label className="font-weight-regular">Email</label>
+              <label htmlFor="email" className="font-weight-regular">
+                Email
+              </label>
               <input
                 type="text"
                 name="email"
                 className="form-control"
-                id="emails"
+                id="email"
                 autoComplete="off"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              <span id="emailids" className="text-danger font-weight-regular"></span>
+              {formik.touched.email && formik.errors.email && (
+                <span className="text-danger font-weight-regular">{formik.errors.email}</span>
+              )}
             </div>
 
             <div className="form-group">
-              <label htmlFor="user" className="font-weight-regular">
+              <label htmlFor="username" className="font-weight-regular">
                 Username
               </label>
               <input
                 type="text"
-                name="user"
+                name="username"
                 className="form-control"
-                id="user"
+                id="username"
                 autoComplete="off"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              <span id="username" className="text-danger font-weight-regular"></span>
+              {formik.touched.username && formik.errors.username && (
+                <span className="text-danger font-weight-regular">{formik.errors.username}</span>
+              )}
             </div>
 
             <div className="form-group">
-              <label className="font-weight-regular">Password</label>
+              <label htmlFor="password" className="font-weight-regular">
+                Password
+              </label>
               <input
                 type="password"
-                name="pass"
+                name="password"
                 className="form-control"
-                id="pass"
+                id="password"
                 autoComplete="off"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              <span id="passwords" className="text-danger font-weight-regular"></span>
+              {formik.touched.password && formik.errors.password && (
+                <span className="text-danger font-weight-regular">{formik.errors.password}</span>
+              )}
             </div>
 
             <div className="form-group">
-              <label className="font-weight-regular">Confirm Password</label>
+              <label htmlFor="confirmPassword" className="font-weight-regular">
+                Confirm Password
+              </label>
               <input
                 type="password"
-                name="conpass"
+                name="confirmPassword"
                 className="form-control"
-                id="conpass"
+                id="confirmPassword"
                 autoComplete="off"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={formik.values.confirmPassword}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              <span id="confrmpass" className="text-danger font-weight-regular"></span>
+              {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+                <span className="text-danger font-weight-regular">{formik.errors.confirmPassword}</span>
+              )}
             </div>
 
             <div className="form-group">
-              <label className="font-weight-regular">Mobile Number</label>
+              <label htmlFor="mobileNumber" className="font-weight-regular">
+                Mobile Number
+              </label>
               <input
                 type="text"
-                name="mobile"
+                name="mobileNumber"
                 className="form-control"
                 id="mobileNumber"
                 autoComplete="off"
-                value={mobileNumber}
-                onChange={(e) => setMobileNumber(e.target.value)}
+                value={formik.values.mobileNumber}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              <span id="mobileno" className="text-danger font-weight-regular"></span>
+              {formik.touched.mobileNumber && formik.errors.mobileNumber && (
+                <span className="text-danger font-weight-regular">{formik.errors.mobileNumber}</span>
+              )}
             </div>
 
             <input

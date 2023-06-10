@@ -1,69 +1,63 @@
-import React, { useState } from 'react';
-import { validateLoginForm } from '../utils/validation.js';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { validationSchema } from '../utils/validation.js';
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  
-    const formData = {
-      user: username,
-      pass: password,
-    };
-  
-    const errors = validateLoginForm(formData);
-  
-    if (Object.keys(errors).length === 0) {
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
       // Perform login logic here
       // ...
-  
-      setUsername('');
-      setPassword('');
-    } else {
-      setError(errors);
-    }
-  };
-  
+      console.log(values);
+    },
+  });
 
   return (
     <div className="container">
       <br />
       <div className="col-lg-5 m-auto d-block">
-        <form onSubmit={handleSubmit} className="bg-light">
+        <form onSubmit={formik.handleSubmit} className="bg-light">
           <div className="form-group">
-            <label htmlFor="user" className="font-weight-regular">
+            <label htmlFor="username" className="font-weight-regular">
               Username
             </label>
             <input
               type="text"
-              name="user"
+              name="username"
               className="form-control"
-              id="user"
+              id="username"
               autoComplete="off"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={formik.values.username}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
-            <span id="username" className="text-danger font-weight-regular">
-              {error}
-            </span>
+            {formik.touched.username && formik.errors.username && (
+              <span className="text-danger font-weight-regular">{formik.errors.username}</span>
+            )}
           </div>
 
           <div className="form-group">
-            <label className="font-weight-regular">Password</label>
+            <label htmlFor="password" className="font-weight-regular">
+              Password
+            </label>
             <input
               type="password"
-              name="pass"
+              name="password"
               className="form-control"
-              id="pass"
+              id="password"
               autoComplete="off"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
-            <span id="passwords" className="text-danger font-weight-regular"></span>
+            {formik.touched.password && formik.errors.password && (
+              <span className="text-danger font-weight-regular">{formik.errors.password}</span>
+            )}
           </div>
 
           <input
@@ -73,8 +67,7 @@ const LoginForm = () => {
             className="btn btn-success"
             autoComplete="off"
           />
-          Don't have an account?
-          <Link to="/signup">Sign Up</Link>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
         </form>
         <br /><br />
       </div>

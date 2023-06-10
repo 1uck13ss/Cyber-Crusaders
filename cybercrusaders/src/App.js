@@ -6,6 +6,7 @@ import Card from "./Card";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
+  const [showLoginForm, setShowLoginForm] = useState(true);
 
   useEffect(() => {
     fetchInfo();

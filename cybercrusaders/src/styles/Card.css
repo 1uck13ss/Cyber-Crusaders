@@ -2,7 +2,6 @@
   overflow: hidden;
   display: block;
   height: 250px;
-  width: 200px;
 }
 
 img {
@@ -14,7 +13,7 @@ img {
 
 .product-info {
   color: aliceblue;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
   display: flex;
   flex-direction: column;
@@ -23,14 +22,14 @@ img {
 }
 
 h3 {
-  height: 25px;
+  height: 30px;
   overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
+  font-size: 25px;
 }
 
 p {
-  margin-top: -10px;
   margin-bottom: -5px;
   font-size: 14px;
   font-weight: bold;
@@ -48,6 +47,7 @@ p {
   animation: blink 8s linear infinite;
   margin-right: 10px;
   width: 200px;
+  height: 330px;
 }
 
 @keyframes blink {

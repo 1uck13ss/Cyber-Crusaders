@@ -3,10 +3,20 @@ import "./styles/App.css";
 import logo from "./assets/logo.jpg";
 import footerlogo from "./assets/footerlogo.jpg";
 import Card from "./Card";
+import Pagination from "./Pagination";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
   const [showLoginForm, setShowLoginForm] = useState(true);
+  const [currentPage, setCurrent] = useState(1);
+  const [recordsPerPage] = useState(8);
+
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+
+  const paginate = (pageNumber) => {
+    setCurrent(pageNumber);
+  };
 
   useEffect(() => {
     fetchInfo();
@@ -17,8 +27,12 @@ const App = () => {
     myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
     myHeaders.append("Content-Type", "text/plain");
 
-    var raw =
-      'fields name, first_release_date, cover.image_id, cover.width, cover.height; limit 8; search "halo";';
+    const currentDate = Math.floor(Date.now() / 1000);
+
+    var raw = `fields name, first_release_date, cover.image_id;
+      where first_release_date > ${currentDate};
+      limit 19;
+      sort first_release_date asc;`;
 
     var requestOptions = {
       method: "POST",
@@ -34,10 +48,13 @@ const App = () => {
       );
       const responseJson = await response.json();
       setGameList(responseJson);
+      console.log(responseJson);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const currentRecords = gameList.slice(indexOfFirstRecord, indexOfLastRecord);
 
   return (
     <div className="App">
@@ -110,12 +127,12 @@ const App = () => {
           </div>
           {/* fields name, release_dates, screenshots, prices */}
           <div className="product-container">
-            {gameList.map((game) => (
+            {currentRecords.map((game) => (
               <Card
                 key={game.id}
                 name={game.name}
                 first_release_date={game.first_release_date}
-                cover={game.cover.image_id}
+                cover={game.cover ? game.cover.image_id : null}
               />
             ))}
           </div>
@@ -123,27 +140,12 @@ const App = () => {
       </main>
 
       <div className="pagination">
-        <a href="#" className="pagination-item">
-          &laquo;
-        </a>
-        <a href="#" className="pagination-item">
-          &lsaquo;
-        </a>
-        <a href="#" className="pagination-item active">
-          1
-        </a>
-        <a href="#" className="pagination-item">
-          2
-        </a>
-        <a href="#" className="pagination-item">
-          3
-        </a>
-        <a href="#" className="pagination-item">
-          &rsaquo;
-        </a>
-        <a href="#" className="pagination-item">
-          &raquo;
-        </a>
+        <Pagination
+          current={currentPage}
+          posts={recordsPerPage}
+          total={gameList.length}
+          paginate={paginate}
+        />
       </div>
 
       <footer className="footer">

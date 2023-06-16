@@ -8,8 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import LoginForm from "./components/LoginForm";
 import Navigation from "./Navigation";
 import Signup from "./components/SignUp";
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -21,9 +20,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <Navigation />
+      <App />
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-

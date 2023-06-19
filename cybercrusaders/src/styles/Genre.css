@@ -1,0 +1,17 @@
+.genre-list {
+  color: white;
+  font-size: 20px;
+}
+
+.genre {
+  margin-bottom: 12px;
+}
+
+.genre-list ul {
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  margin-block: 12px;
+}

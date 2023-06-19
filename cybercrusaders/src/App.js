@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import logo from "./assets/logo.jpg";
 import footerlogo from "./assets/footerlogo.jpg";
+import joystick from "./assets/joystick.jpg";
 import Card from "./Card";
 import Pagination from "./Pagination";
+import Genre from "./Genre";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
@@ -18,6 +20,14 @@ const App = () => {
     setCurrent(pageNumber);
   };
 
+  const filterByGenres = (genre) => {
+    const filteredGames = gameList.filter((game) => {
+      console.log(game.genres);
+      return game.genres && game.genres.some((g) => g.name === genre);
+    });
+    setGameList(filteredGames);
+  };
+
   useEffect(() => {
     fetchInfo();
   }, []);
@@ -29,7 +39,7 @@ const App = () => {
 
     const currentDate = Math.floor(Date.now() / 1000);
 
-    var raw = `fields name, first_release_date, cover.image_id;
+    var raw = `fields name, first_release_date, cover.image_id, genres.name;
       where first_release_date > ${currentDate};
       limit 19;
       sort first_release_date asc;`;
@@ -93,37 +103,8 @@ const App = () => {
 
       <main>
         <div className="body-container">
-          <div className="genre-list">
-            <ul>
-              <div className="genre">Genre</div>
-              <li>
-                <a href="#">Action</a>
-              </li>
-              <li>
-                <a href="#">Adventure</a>
-              </li>
-              <li>
-                <a href="#">Fighting</a>
-              </li>
-              <li>
-                <a href="#">Casual</a>
-              </li>
-              <li>
-                <a href="#">Fighting</a>
-              </li>
-              <li>
-                <a href="#">Multiplayer</a>
-              </li>
-              <li>
-                <a href="#">RPG</a>
-              </li>
-              <li>
-                <a href="#">Sports</a>
-              </li>
-              <li>
-                <a href="#">Strategy</a>
-              </li>
-            </ul>
+          <div className="genre-container">
+            <Genre filterByGenres={filterByGenres} />
           </div>
           {/* fields name, release_dates, screenshots, prices */}
           <div className="product-container">
@@ -180,30 +161,8 @@ const App = () => {
                 </a>
               </div>
             </div>
-            <div className="footer-list">
-              <p className="title footer-list-title has-after">Useful Links</p>
-              <ul>
-                <li>
-                  <a href="#" className="footer-link">
-                    Nintendo
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="footer-link">
-                    Playstation
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="footer-link">
-                    XBox
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="footer-link">
-                    PC
-                  </a>
-                </li>
-              </ul>
+            <div className="footer-list-img">
+              <img src={joystick} alt="logo" />
             </div>
             <div className="footer-list">
               <p className="title footer-list-title has-after">Contact Us</p>

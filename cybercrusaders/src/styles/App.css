@@ -4,6 +4,15 @@
   margin-top: 0px;
 }
 
+.nav-container *,
+footer * {
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=);
+  background-attachment: fixed;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 li {
   list-style: none;
 }
@@ -11,6 +20,7 @@ li {
 header {
   margin: 0 0;
   justify-content: center;
+  height: 40px;
 }
 
 .nav-container {
@@ -21,6 +31,7 @@ header {
   align-items: top;
   width: 100%;
   z-index: 1;
+  flex-direction: row;
 }
 
 .nav-container ul li a:hover,
@@ -63,7 +74,7 @@ header {
 
 nav {
   margin-left: auto;
-  margin-right: 8.5%;
+  margin-right: 11%;
 }
 
 nav ul {
@@ -85,46 +96,6 @@ nav a {
   text-decoration: none;
 }
 
-.genre {
-  color: grey;
-  font-size: 20px;
-}
-
-.genre-list {
-  margin-left: 30px;
-  display: flex;
-}
-
-.genre-list ul {
-  display: flex;
-  flex-direction: column;
-}
-
-.genre-list li {
-  margin-block: 12px;
-}
-
-.genre-list .nav-container {
-  display: inline-flex;
-}
-
-/* Add some styling to genre-list */
-.genre-list a {
-  border-radius: 15px;
-  font-size: 15px;
-  color: hsl(0, 0%, 100%);
-  text-decoration: none;
-}
-
-.genre-list a:hover {
-  background-color: #665e5e;
-}
-
-.genre-list a.active {
-  background-color: #0077ff;
-  color: #fff;
-}
-
 .body-container {
   margin-top: 130px;
   display: flex;
@@ -135,6 +106,8 @@ nav a {
   flex-wrap: wrap;
   margin-left: 30px;
   height: 30%;
+  background-color: black;
+  background-image: none;
 }
 
 .pagination {
@@ -197,6 +170,20 @@ a:hover .fa-telegram {
   max-width: 100%;
 }
 
+.footer-list-img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  padding-right: 20px;
+  border-radius: 100%;
+}
+
+.footer-list-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
 .has-before,
 .has-after {
   position: relative;
@@ -230,7 +217,7 @@ a:hover .fa-telegram {
 }
 
 .contact-item .span {
-  color: purple;
+  color: skyblue;
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 700;

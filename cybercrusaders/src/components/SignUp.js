@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { validationSchema } from '../utils/validation.js';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "../utils/firebase.js";
 
-function Signup() {
+const SignUp = () => {
+
+  const navigate = useNavigate(); //Get the navigate function from react-router
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -14,15 +19,35 @@ function Signup() {
       mobileNumber: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      // Perform signup logic here
-      // ...
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        await handleSignUp(values);
+        console.log("Signed up!");
+        console.log("email is: " + values.email);
+        console.log("password is: " + values.password);
+        navigate('/');
+      } catch (error) {
+        console.log('Sign-up error', error);
+        // Handle login error, display error message, etc.
+      }
     },
   });
 
   const handleReset = () => {
     formik.resetForm();
+  };
+  
+  const handleSignUp = async (values) => {
+    try {
+      // Call Firebase createUserWithEmailAndPassword method
+      //const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      console.log('Sign up successful!');
+      console.log("Account created!");
+      // Redirect or perform other actions after successful login
+    } catch (error) {
+      console.log('Sign-up error:', error);
+      // Handle login error, display error message, etc.
+    }
   };
 
   return (
@@ -48,6 +73,7 @@ function Signup() {
                 type="text"
                 name="name"
                 className="form-control"
+                placeholder = "Enter your name..."
                 id="name"
                 autoComplete="off"
                 value={formik.values.name}
@@ -67,6 +93,7 @@ function Signup() {
                 type="text"
                 name="email"
                 className="form-control"
+                placeholder = "Enter your email..."
                 id="email"
                 autoComplete="off"
                 value={formik.values.email}
@@ -79,25 +106,6 @@ function Signup() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="username" className="font-weight-regular">
-                Username
-              </label>
-              <input
-                type="text"
-                name="username"
-                className="form-control"
-                id="username"
-                autoComplete="off"
-                value={formik.values.username}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.username && formik.errors.username && (
-                <span className="text-danger font-weight-regular">{formik.errors.username}</span>
-              )}
-            </div>
-
-            <div className="form-group">
               <label htmlFor="password" className="font-weight-regular">
                 Password
               </label>
@@ -105,6 +113,7 @@ function Signup() {
                 type="password"
                 name="password"
                 className="form-control"
+                placeholder = "Enter your password..."
                 id="password"
                 autoComplete="off"
                 value={formik.values.password}
@@ -124,6 +133,7 @@ function Signup() {
                 type="password"
                 name="confirmPassword"
                 className="form-control"
+                placeholder = "Enter your password..."
                 id="confirmPassword"
                 autoComplete="off"
                 value={formik.values.confirmPassword}
@@ -135,7 +145,7 @@ function Signup() {
               )}
             </div>
 
-            <div className="form-group">
+            {/*<div className="form-group">
               <label htmlFor="mobileNumber" className="font-weight-regular">
                 Mobile Number
               </label>
@@ -143,6 +153,7 @@ function Signup() {
                 type="text"
                 name="mobileNumber"
                 className="form-control"
+                placeholder = "Enter your phone number..."
                 id="mobileNumber"
                 autoComplete="off"
                 value={formik.values.mobileNumber}
@@ -152,7 +163,7 @@ function Signup() {
               {formik.touched.mobileNumber && formik.errors.mobileNumber && (
                 <span className="text-danger font-weight-regular">{formik.errors.mobileNumber}</span>
               )}
-            </div>
+              </div>*/}
 
             <input
               type="submit"
@@ -179,4 +190,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignUp;

@@ -37,7 +37,7 @@ const App = () => {
     myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
     myHeaders.append("Content-Type", "text/plain");
 
-    const currentDate = Math.floor(Date.now() / 1000);
+    const currentDate = Math.floor(Date.now() / 1000);                                   
 
     var raw = `fields name, first_release_date, cover.image_id, genres.name;
       where first_release_date > ${currentDate};

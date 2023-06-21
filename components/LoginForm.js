@@ -9,6 +9,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 const LoginForm = ({ onLogin, isLoggedIn }) => {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const recaptchaRef = React.createRef();
 
   const formik = useFormik({
@@ -52,17 +53,19 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
     setPasswordVisible((prevVisible) => !prevVisible);
   };
 
+  // Handle Recaptcha logic 
   const handleRecaptchaVerify = (response) => {
+    setRecaptchaVerified(true);
     console.log("Recaptcha verified");
   }
 
   return (
     <div>
-      <h1 className="text-green text-center font-weight-bold" style={{ fontSize: '40px' }}>
+      <h1 className="text-green text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent' }}>
         Form LOGIN
       </h1>
 
-      <h4 className="text-blue text-center font-weight-bold" style={{ fontSize: '20px' }}>
+      <h4 className="text-blue text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '20px' }}>
         Login
       </h4>
 
@@ -70,9 +73,9 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
         <br />
 
         <div className="col-lg-5 m-auto d-block">
-          <form onSubmit={formik.handleSubmit} className="bg-light">
+          <form onSubmit={formik.handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email" className="font-weight-regular">
+              <label htmlFor="email" className="font-weight-regular" style={{ color:'floralwhite' }}>
                 Email
               </label>
               <input
@@ -92,7 +95,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password" className="font-weight-regular">
+              <label htmlFor="password" className="font-weight-regular" style={{ color:'floralwhite' }}>
                 Password
               </label>
               <div className="password-input">
@@ -123,10 +126,17 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
             />
 
             {/*submit button*/}
-            <input type="submit" name="submit" value="Submit" className="btn btn-success" autoComplete="off" />
+            <input type="submit" name="submit" value="Submit" className="btn btn-success" autoComplete="off" 
+              onClick={(e) => {
+                if (!recaptchaVerified) {
+                  e.preventDefault();
+                  alert("Please verify reCaptcha, are you a robot sent by space?");
+                }
+              }}
+            />
           </form>
           <br></br>
-        <div>
+        <div style={{ color:'floralwhite' }}>
           Don't have an account? <Link to="/signup">Sign Up</Link>
         </div>
 

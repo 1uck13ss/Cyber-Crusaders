@@ -7,7 +7,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import LoginForm from "./components/LoginForm";
 import Navigation from "./Navigation";
-import SignUp from "./components/SignUp";
+/*import SignUp from "./components/SignUp";*/
 import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -6,7 +6,7 @@ const Genre = ({ filterByGenres }) => {
       <ul>
         <strong className="genre">Genre</strong>
         <li onClick={() => filterByGenres("Action")}>Action</li>
-        <li onClick={() => filterByGenres("Adenture")}>Adventure</li>
+        <li onClick={() => filterByGenres("Adventure")}>Adventure</li>
         <li onClick={() => filterByGenres("Fighting")}>Fighting</li>
         <li onClick={() => filterByGenres("MOBA")}>MOBA</li>
         <li onClick={() => filterByGenres("Fighting")}>Fighting</li>

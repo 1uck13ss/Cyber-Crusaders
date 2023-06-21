@@ -1,5 +1,5 @@
 * {
-  background-color: rgb(255, 255, 255);
+  background-color: black;
   font-family: "Chakra Petch";
   margin-top: 0px;
 }
@@ -74,7 +74,7 @@ header {
 
 nav {
   margin-left: auto;
-  margin-right: 11%;
+  margin-right: 5%;
 }
 
 nav ul {
@@ -108,6 +108,7 @@ nav a {
   height: 30%;
   background-color: black;
   background-image: none;
+  justify-content: center;
 }
 
 .pagination {

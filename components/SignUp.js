@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { validationSchema } from '../utils/validation.js';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../utils/firebase.js";
 
 const SignUp = () => {
@@ -25,7 +25,7 @@ const SignUp = () => {
         console.log("Signed up!");
         console.log("email is: " + values.email);
         console.log("password is: " + values.password);
-        navigate('/');
+        navigate('/login');
       } catch (error) {
         console.log('Sign-up error', error);
         // Handle login error, display error message, etc.
@@ -40,13 +40,18 @@ const SignUp = () => {
   const handleSignUp = async (values) => {
     try {
       // Call Firebase createUserWithEmailAndPassword method
-      //const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      await createUserWithEmailAndPassword(auth, values.email, values.password);
       console.log('Sign up successful!');
       console.log("Account created!");
       // Redirect or perform other actions after successful login
     } catch (error) {
-      console.log('Sign-up error:', error);
+      if (error.code === 'auth/email-already-in-use') {
+        formik.setFieldError('email', 'Email already exists');
+      } else {
+        console.log('Sign-up error:', error);
       // Handle login error, display error message, etc.
+      }
+      throw error; //Rethrow the error to prevent form submission
     }
   };
 
@@ -79,6 +84,7 @@ const SignUp = () => {
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                maxLength={25}
               />
               {formik.touched.name && formik.errors.name && (
                 <span className="text-danger font-weight-regular">{formik.errors.name}</span>

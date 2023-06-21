@@ -118,7 +118,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
             {/* ReCAPTCHA */}
             <ReCAPTCHA
               ref={recaptchaRef}
-              sitekey="6LdgLbgmAAAAAPAz8Zz8LCgPy0AejK8wYdgJtqEX"
+              sitekey="6LccIrkmAAAAAEYXpCBt4AOitCid97jFauP1cZa0"
               onChange={handleRecaptchaVerify}
             />
 

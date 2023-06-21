@@ -109,7 +109,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                <span className="password-toggle" onClick={togglePasswordVisibility}>
+                <span className="password-toggle" style = {{ color: 'gold'}} onClick={togglePasswordVisibility}>
                   {passwordVisible ? <i className="fa fa-eye-slash"></i> : <i className="fa fa-eye"></i>}
                 </span>
               </div>

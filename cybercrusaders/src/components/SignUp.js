@@ -57,11 +57,11 @@ const SignUp = () => {
 
   return (
     <div>
-      <h1 className="text-green text-center font-weight-bold" style={{ fontSize: '40px' }}>
+      <h1 className="text-green text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent' }}>
         Form Validation In JavaScript
       </h1>
 
-      <h4 className="text-blue text-center font-weight-bold" style={{ fontSize: '20px' }}>
+      <h4 className="text-blue text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent' }}>
         Sign Up
       </h4>
 
@@ -69,9 +69,9 @@ const SignUp = () => {
         <br />
 
         <div className="col-lg-5 m-auto d-block">
-          <form onSubmit={formik.handleSubmit} className="bg-light">
+          <form onSubmit={formik.handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name" className="font-weight-regular">
+              <label htmlFor="name" className="font-weight-regular" style={{ color:'floralwhite' }}>
                 Name
               </label>
               <input
@@ -92,7 +92,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="email" className="font-weight-regular">
+              <label htmlFor="email" className="font-weight-regular" style={{ color:'floralwhite' }}>
                 Email
               </label>
               <input
@@ -112,7 +112,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password" className="font-weight-regular">
+              <label htmlFor="password" className="font-weight-regular" style={{ color:'floralwhite' }}>
                 Password
               </label>
               <input
@@ -132,7 +132,7 @@ const SignUp = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="confirmPassword" className="font-weight-regular">
+              <label htmlFor="confirmPassword" className="font-weight-regular" style={{ color:'floralwhite' }}>
                 Confirm Password
               </label>
               <input
@@ -184,12 +184,13 @@ const SignUp = () => {
               value="Reset"
               className="btn btn-secondary"
               autoComplete="off"
-              onClick={handleReset}
+              onClick={handleReset} 
             />
-            Already have an account? <Link to="/login">Login</Link>
           </form>
-          <br />
-          <br />
+          <br></br>
+          <div style={{ color:'floralwhite' }}>
+            Already have an account? <Link to="/login">Login</Link>
+          </div>
         </div>
       </div>
     </div>

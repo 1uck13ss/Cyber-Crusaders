@@ -22,8 +22,15 @@ const App = () => {
 
   const filterByGenres = (genre) => {
     const filteredGames = gameList.filter((game) => {
-      console.log(game.genres);
-      return game.genres && game.genres.some((g) => g.name === genre);
+      return (
+        game.genres &&
+        game.genres.some((g) => {
+          console.log("game genre " + g.name);
+          console.log("genre " + genre);
+          console.log(g.anme === genre);
+          return g.name === genre;
+        })
+      );
     });
     setGameList(filteredGames);
   };
@@ -37,7 +44,7 @@ const App = () => {
     myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
     myHeaders.append("Content-Type", "text/plain");
 
-    const currentDate = Math.floor(Date.now() / 1000);                                   
+    const currentDate = Math.floor(Date.now() / 1000);
 
     var raw = `fields name, first_release_date, cover.image_id, genres.name;
       where first_release_date > ${currentDate};

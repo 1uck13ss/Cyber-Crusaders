@@ -6,33 +6,20 @@ import joystick from "./assets/joystick.jpg";
 import Card from "./Card";
 import Pagination from "./Pagination";
 import Genre from "./Genre";
+import Platform from "./Platform";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [currentPage, setCurrent] = useState(1);
   const [recordsPerPage] = useState(8);
+  const [original, setOriginal] = useState([]);
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
   const paginate = (pageNumber) => {
     setCurrent(pageNumber);
-  };
-
-  const filterByGenres = (genre) => {
-    const filteredGames = gameList.filter((game) => {
-      return (
-        game.genres &&
-        game.genres.some((g) => {
-          console.log("game genre " + g.name);
-          console.log("genre " + genre);
-          console.log(g.anme === genre);
-          return g.name === genre;
-        })
-      );
-    });
-    setGameList(filteredGames);
   };
 
   useEffect(() => {
@@ -46,7 +33,7 @@ const App = () => {
 
     const currentDate = Math.floor(Date.now() / 1000);
 
-    var raw = `fields name, first_release_date, cover.image_id, genres.name;
+    var raw = `fields name, first_release_date, cover.image_id, genres.name, platforms;
       where first_release_date > ${currentDate};
       limit 19;
       sort first_release_date asc;`;
@@ -65,9 +52,41 @@ const App = () => {
       );
       const responseJson = await response.json();
       setGameList(responseJson);
-      console.log(responseJson);
+      setOriginal(responseJson);
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const filterByGenres = (genre, toggle) => {
+    if (toggle) {
+      setGameList(original);
+    } else {
+      const filteredGames = gameList.filter((game) => {
+        return (
+          game.genres &&
+          game.genres.some((g) => {
+            return g.name === genre;
+          })
+        );
+      });
+      setGameList(filteredGames);
+    }
+  };
+
+  const filterByPlatform = (platform, toggle) => {
+    if (toggle) {
+      setGameList(original);
+    } else {
+      const filteredGames = gameList.filter((game) => {
+        return (
+          game.platforms &&
+          game.platforms.some((g) => {
+            return g === platform;
+          })
+        );
+      });
+      setGameList(filteredGames);
     }
   };
 
@@ -88,22 +107,7 @@ const App = () => {
             </a>
           </div>
           <nav>
-            <ul>
-              <li>
-                <a className="active" href="#">
-                  Nintendo
-                </a>
-              </li>
-              <li>
-                <a href="#">Playstation</a>
-              </li>
-              <li>
-                <a href="#">XBox</a>
-              </li>
-              <li>
-                <a href="#">PC</a>
-              </li>
-            </ul>
+            <Platform filterByPlatform={filterByPlatform} />
           </nav>
         </div>
       </header>

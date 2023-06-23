@@ -1,10 +1,7 @@
-.genre-list {
-  color: white;
-  font-size: 20px;
-}
-
 .genre {
   margin-bottom: 12px;
+  color: white;
+  font-size: 20px;
 }
 
 .genre-list ul {

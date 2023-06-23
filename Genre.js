@@ -1,20 +1,27 @@
 import "./styles/Genre.css";
+import Toggle from "./Toggle";
 
 const Genre = ({ filterByGenres }) => {
+  const genres = [
+    "Action",
+    "Adventure",
+    "Fighting",
+    "MOBA",
+    "Platform",
+    "RPG",
+    "Sports",
+    "Shooter",
+    "Racing",
+  ];
   return (
     <div className="genre-list">
       <ul>
         <strong className="genre">Genre</strong>
-        <li onClick={() => filterByGenres("Action")}>Action</li>
-        <li onClick={() => filterByGenres("Adventure")}>Adventure</li>
-        <li onClick={() => filterByGenres("Fighting")}>Fighting</li>
-        <li onClick={() => filterByGenres("MOBA")}>MOBA</li>
-        <li onClick={() => filterByGenres("Fighting")}>Fighting</li>
-        <li onClick={() => filterByGenres("Platform")}>Platform</li>
-        <li onClick={() => filterByGenres("RPG")}>RPG</li>
-        <li onClick={() => filterByGenres("Sports")}>Sports</li>
-        <li onClick={() => filterByGenres("Shooter")}>Shooter</li>
-        <li onClick={() => filterByGenres("Racing")}>Racing</li>
+        {genres.map((genre) => (
+          <li key={genre}>
+            <Toggle name={genre} condition={filterByGenres} />
+          </li>
+        ))}
       </ul>
     </div>
   );

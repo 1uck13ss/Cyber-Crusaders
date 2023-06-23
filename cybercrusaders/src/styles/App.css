@@ -265,3 +265,9 @@ a:hover .fa-telegram {
 .footer .logo img {
   width: 170px;
 }
+
+
+/* for login-form-container */
+.login-form-container {
+  background-color: transparent;
+}

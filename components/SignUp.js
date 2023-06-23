@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { validationSchema } from '../utils/validation.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../utils/firebase.js";
+import gifBackground from '../assets/gifBackground1.gif';
 
 const SignUp = () => {
 
@@ -56,7 +57,7 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="signUpContainer" style={{ width: '100vw', height: '100vh', backgroundImage: `url(${gifBackground})`, backgroundSize: 'cover', overflow: 'hidden' }}>
       <h1 className="text-green text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent' }}>
         Form Validation In JavaScript
       </h1>
@@ -65,13 +66,13 @@ const SignUp = () => {
         Sign Up
       </h4>
 
-      <div className="container">
+      <div className="sign-up-container" style={{ backgroundColor: 'transparent', marginTop: '80px' }}>
         <br />
 
-        <div className="col-lg-5 m-auto d-block">
-          <form onSubmit={formik.handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name" className="font-weight-regular" style={{ color:'floralwhite' }}>
+        <div className="col-lg-5 m-auto d-block" style={{ backgroundColor: 'black', borderRadius: '10px', opacity: '0.6' }}>
+          <form onSubmit={formik.handleSubmit} style={{ background: 'transparent', border: 'none' }}>
+            <div className="form-group" style={{ backgroundColor: 'transparent' }}>
+              <label htmlFor="name" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
                 Name
               </label>
               <input
@@ -91,8 +92,8 @@ const SignUp = () => {
               )}
             </div>
 
-            <div className="form-group">
-              <label htmlFor="email" className="font-weight-regular" style={{ color:'floralwhite' }}>
+            <div className="form-group" style={{ backgroundColor: 'transparent' }}>
+              <label htmlFor="email" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
                 Email
               </label>
               <input
@@ -111,8 +112,8 @@ const SignUp = () => {
               )}
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password" className="font-weight-regular" style={{ color:'floralwhite' }}>
+            <div className="form-group" style={{ backgroundColor: 'transparent' }}>
+              <label htmlFor="password" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
                 Password
               </label>
               <input
@@ -131,8 +132,8 @@ const SignUp = () => {
               )}
             </div>
 
-            <div className="form-group">
-              <label htmlFor="confirmPassword" className="font-weight-regular" style={{ color:'floralwhite' }}>
+            <div className="form-group" style={{ backgroundColor: 'transparent' }}>
+              <label htmlFor="confirmPassword" className="font-weight-regular" style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
                 Confirm Password
               </label>
               <input
@@ -151,26 +152,6 @@ const SignUp = () => {
               )}
             </div>
 
-            {/*<div className="form-group">
-              <label htmlFor="mobileNumber" className="font-weight-regular">
-                Mobile Number
-              </label>
-              <input
-                type="text"
-                name="mobileNumber"
-                className="form-control"
-                placeholder = "Enter your phone number..."
-                id="mobileNumber"
-                autoComplete="off"
-                value={formik.values.mobileNumber}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.mobileNumber && formik.errors.mobileNumber && (
-                <span className="text-danger font-weight-regular">{formik.errors.mobileNumber}</span>
-              )}
-              </div>*/}
-
             <input
               type="submit"
               name="submit"
@@ -188,7 +169,7 @@ const SignUp = () => {
             />
           </form>
           <br></br>
-          <div style={{ color:'floralwhite' }}>
+          <div style={{ color:'floralwhite', backgroundColor: 'transparent' }}>
             Already have an account? <Link to="/login">Login</Link>
           </div>
         </div>

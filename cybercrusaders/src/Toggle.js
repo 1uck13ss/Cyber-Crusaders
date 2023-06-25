@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles/Toggle.css";
 
-const Toggle = ({ condition, name }) => {
-  const [toggle, setToggle] = useState(false);
+const Toggle = ({ condition, name, type }) => {
+  let selectedFilter = [];
 
   const handleClick = () => {
-    condition(name, toggle);
-    setToggle(!toggle);
+    selectedFilter = condition(name, type);
   };
 
-  return <button onClick={handleClick}>{name}</button>;
+  return (
+    <button
+      onClick={handleClick}
+      className={selectedFilter.includes(name) ? "selected" : ""}
+    >
+      {name}
+    </button>
+  );
 };
 
 export default Toggle;

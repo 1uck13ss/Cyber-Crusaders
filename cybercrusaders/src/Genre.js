@@ -19,7 +19,7 @@ const Genre = ({ filterByGenres }) => {
         <strong className="genre">Genre</strong>
         {genres.map((genre) => (
           <li key={genre}>
-            <Toggle name={genre} condition={filterByGenres} />
+            <Toggle name={genre} condition={filterByGenres} type={true} />
           </li>
         ))}
       </ul>

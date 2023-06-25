@@ -7,6 +7,7 @@ import Card from "./Card";
 import Pagination from "./Pagination";
 import Genre from "./Genre";
 import Platform from "./Platform";
+import { motion, AnimatePresence } from "framer-motion";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
@@ -14,9 +15,8 @@ const App = () => {
   const [currentPage, setCurrent] = useState(1);
   const [recordsPerPage] = useState(8);
   const [original, setOriginal] = useState([]);
-
-  const indexOfLastRecord = currentPage * recordsPerPage;
-  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const [genres, setGenres] = useState([]);
+  const [platforms, setPlatforms] = useState([]);
 
   const paginate = (pageNumber) => {
     setCurrent(pageNumber);
@@ -33,7 +33,7 @@ const App = () => {
 
     const currentDate = Math.floor(Date.now() / 1000);
 
-    var raw = `fields name, first_release_date, cover.image_id, genres.name, platforms;
+    var raw = `fields name, first_release_date, cover.image_id, genres.name, platforms.name;
       where first_release_date > ${currentDate};
       limit 19;
       sort first_release_date asc;`;
@@ -58,38 +58,65 @@ const App = () => {
     }
   };
 
-  const filterByGenres = (genre, toggle) => {
-    if (toggle) {
-      setGameList(original);
+  const filterCondition = (filter, type) => {
+    if (type && (!genres || !genres.includes(filter))) {
+      setGenres([...genres, filter]);
+    } else if (
+      !type &&
+      (!platforms ||
+        platforms.every(
+          (platform) =>
+            filter.toLowerCase().indexOf(platform.toLowerCase()) === -1
+        ))
+    ) {
+      setPlatforms([...platforms, filter]);
+    } else if (type) {
+      setGenres(genres.filter((g) => g !== filter));
     } else {
-      const filteredGames = gameList.filter((game) => {
-        return (
-          game.genres &&
-          game.genres.some((g) => {
-            return g.name === genre;
-          })
-        );
-      });
-      setGameList(filteredGames);
+      setPlatforms(
+        platforms.filter(
+          (p) => filter.toLowerCase().indexOf(p.toLowerCase()) === -1
+        )
+      );
     }
   };
 
-  const filterByPlatform = (platform, toggle) => {
-    if (toggle) {
-      setGameList(original);
-    } else {
-      const filteredGames = gameList.filter((game) => {
-        return (
-          game.platforms &&
-          game.platforms.some((g) => {
-            return g === platform;
-          })
-        );
-      });
+  useEffect(() => {
+    const updateGameList = () => {
+      let filteredGames = original;
+      if (platforms) {
+        filteredGames = original.filter((game) => {
+          return (
+            game.platforms &&
+            platforms.every((filter) => {
+              return game.platforms.some((platform) => {
+                return (
+                  platform.name.toLowerCase().indexOf(filter.toLowerCase()) !==
+                  -1
+                );
+              });
+            })
+          );
+        });
+      }
+      if (genres) {
+        filteredGames = filteredGames.filter((game) => {
+          return (
+            game.genres &&
+            genres.every((filter) => {
+              return game.genres.some((genre) => genre.name === filter);
+            })
+          );
+        });
+      }
       setGameList(filteredGames);
-    }
-  };
+    };
 
+    updateGameList();
+  }, [original, platforms, genres]);
+
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = gameList.slice(indexOfFirstRecord, indexOfLastRecord);
 
   return (
@@ -107,7 +134,7 @@ const App = () => {
             </a>
           </div>
           <nav>
-            <Platform filterByPlatform={filterByPlatform} />
+            <Platform filterByPlatform={filterCondition} />
           </nav>
         </div>
       </header>
@@ -115,19 +142,21 @@ const App = () => {
       <main>
         <div className="body-container">
           <div className="genre-container">
-            <Genre filterByGenres={filterByGenres} />
+            <Genre filterByGenres={filterCondition} />
           </div>
           {/* fields name, release_dates, screenshots, prices */}
-          <div className="product-container">
-            {currentRecords.map((game) => (
-              <Card
-                key={game.id}
-                name={game.name}
-                first_release_date={game.first_release_date}
-                cover={game.cover ? game.cover.image_id : null}
-              />
-            ))}
-          </div>
+          <motion.div layout className="product-container">
+            <AnimatePresence>
+              {currentRecords.map((game) => (
+                <Card
+                  key={game.id}
+                  name={game.name}
+                  first_release_date={game.first_release_date}
+                  cover={game.cover ? game.cover.image_id : null}
+                />
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </main>
 

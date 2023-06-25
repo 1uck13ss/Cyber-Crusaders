@@ -1,4 +1,5 @@
 import "./styles/Card.css";
+import { motion } from "framer-motion";
 import icon from "./assets/icon.jpg";
 
 const Card = (game) => {
@@ -29,7 +30,13 @@ const Card = (game) => {
   };
 
   return (
-    <div className="card-container">
+    <motion.div
+      layout
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      className="card-container"
+    >
       <div className="product-img" data-genre="action">
         <img src={imageUrl ? imageUrl : icon} alt="Product 1" />
       </div>
@@ -37,7 +44,7 @@ const Card = (game) => {
         <h3>{game.name}</h3>
         <p>{convert(game.first_release_date)}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

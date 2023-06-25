@@ -1,5 +1,5 @@
 * {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   font-family: "Chakra Petch";
   margin-top: 0px;
 }
@@ -265,4 +265,9 @@ a:hover .fa-telegram {
 
 .footer .logo img {
   width: 170px;
+}
+
+/* for login-form-container */
+.login-form-container {
+  background-color: transparent;
 }

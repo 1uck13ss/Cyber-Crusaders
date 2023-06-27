@@ -50,6 +50,22 @@ p {
   height: 330px;
 }
 
+.card-container:hover {
+  cursor: pointer;
+}
+
+.card-container:hover .product-img {
+  transform: scale(1.2);
+  transition: 1s;
+  z-index: 2;
+}
+
+.card-container:hover .product-info {
+  transform: scale(1.2) translateY(3px);
+  transition: 1s;
+  z-index: 1;
+}
+
 @keyframes blink {
   0% {
     box-shadow: 0 0 20px lightblue;

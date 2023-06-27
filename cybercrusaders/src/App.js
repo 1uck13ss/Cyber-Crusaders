@@ -13,18 +13,60 @@ const App = () => {
   const [gameList, setGameList] = useState([]);
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [currentPage, setCurrent] = useState(1);
-  const [recordsPerPage] = useState(8);
   const [original, setOriginal] = useState([]);
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
-
-  const paginate = (pageNumber) => {
-    setCurrent(pageNumber);
-  };
+  const [dimensions, setDimensions] = useState(0);
+  const [recordsPerPage, setRecords] = useState(0);
 
   useEffect(() => {
     fetchInfo();
+    const handleResize = () => {
+      setDimensions(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const updateGameList = () => {
+      let filteredGames = original;
+      if (platforms) {
+        filteredGames = original.filter((game) => {
+          return (
+            game.platforms &&
+            platforms.every((filter) => {
+              return game.platforms.some((platform) => {
+                return (
+                  platform.name.toLowerCase().indexOf(filter.toLowerCase()) !==
+                  -1
+                );
+              });
+            })
+          );
+        });
+      }
+      if (genres) {
+        filteredGames = filteredGames.filter((game) => {
+          return (
+            game.genres &&
+            genres.every((filter) => {
+              return game.genres.some((genre) => genre.name === filter);
+            })
+          );
+        });
+      }
+      setGameList(filteredGames);
+    };
+
+    updateGameList();
+  }, [original, platforms, genres]);
+
+  useEffect(() => {
+    const updateRecords = () => {
+      setRecords(Math.floor((dimensions - 130) / 200));
+    };
+    updateRecords();
+  }, [dimensions]);
 
   const fetchInfo = async () => {
     var myHeaders = new Headers();
@@ -61,6 +103,7 @@ const App = () => {
   const filterCondition = (filter, type) => {
     if (type && (!genres || !genres.includes(filter))) {
       setGenres([...genres, filter]);
+      return true;
     } else if (
       !type &&
       (!platforms ||
@@ -70,50 +113,23 @@ const App = () => {
         ))
     ) {
       setPlatforms([...platforms, filter]);
+      return true;
     } else if (type) {
       setGenres(genres.filter((g) => g !== filter));
+      return false;
     } else {
       setPlatforms(
         platforms.filter(
           (p) => filter.toLowerCase().indexOf(p.toLowerCase()) === -1
         )
       );
+      return false;
     }
   };
 
-  useEffect(() => {
-    const updateGameList = () => {
-      let filteredGames = original;
-      if (platforms) {
-        filteredGames = original.filter((game) => {
-          return (
-            game.platforms &&
-            platforms.every((filter) => {
-              return game.platforms.some((platform) => {
-                return (
-                  platform.name.toLowerCase().indexOf(filter.toLowerCase()) !==
-                  -1
-                );
-              });
-            })
-          );
-        });
-      }
-      if (genres) {
-        filteredGames = filteredGames.filter((game) => {
-          return (
-            game.genres &&
-            genres.every((filter) => {
-              return game.genres.some((genre) => genre.name === filter);
-            })
-          );
-        });
-      }
-      setGameList(filteredGames);
-    };
-
-    updateGameList();
-  }, [original, platforms, genres]);
+  const paginate = (pageNumber) => {
+    setCurrent(pageNumber);
+  };
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;

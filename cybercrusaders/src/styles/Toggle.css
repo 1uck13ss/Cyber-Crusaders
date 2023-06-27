@@ -6,7 +6,6 @@ button {
 }
 
 button:focus {
-  color: purple;
   outline: none;
 }
 

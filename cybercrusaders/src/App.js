@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles/App.css";
 import logo from "./assets/logo.jpg";
 import footerlogo from "./assets/footerlogo.jpg";
@@ -16,15 +17,12 @@ const App = () => {
   const [original, setOriginal] = useState([]);
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
-  const [dimensions, setDimensions] = useState(0);
-  const [recordsPerPage, setRecords] = useState(0);
+  const [recordsPerPage] = useState(10);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchInfo();
-    const handleResize = () => {
-      setDimensions(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -61,13 +59,6 @@ const App = () => {
     updateGameList();
   }, [original, platforms, genres]);
 
-  useEffect(() => {
-    const updateRecords = () => {
-      setRecords(Math.floor((dimensions - 130) / 200));
-    };
-    updateRecords();
-  }, [dimensions]);
-
   const fetchInfo = async () => {
     var myHeaders = new Headers();
     myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
@@ -75,7 +66,8 @@ const App = () => {
 
     const currentDate = Math.floor(Date.now() / 1000);
 
-    var raw = `fields name, first_release_date, cover.image_id, genres.name, platforms.name;
+    var raw = `fields name, first_release_date, cover.image_id, genres.name, platforms.name, summary,
+    release_dates;
       where first_release_date > ${currentDate};
       limit 19;
       sort first_release_date asc;`;
@@ -164,12 +156,20 @@ const App = () => {
           <motion.div layout className="product-container">
             <AnimatePresence>
               {currentRecords.map((game) => (
-                <Card
+                <div
                   key={game.id}
-                  name={game.name}
-                  first_release_date={game.first_release_date}
-                  cover={game.cover ? game.cover.image_id : null}
-                />
+                  onClick={() =>
+                    navigate(`/Game/${game.id}`, {
+                      state: { gameDetails: game },
+                    })
+                  }
+                >
+                  <Card
+                    name={game.name}
+                    first_release_date={game.first_release_date}
+                    cover={game.cover ? game.cover.image_id : null}
+                  />
+                </div>
               ))}
             </AnimatePresence>
           </motion.div>

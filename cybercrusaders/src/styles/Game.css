@@ -1,0 +1,51 @@
+.gameDetails {
+  margin-top: 65px;
+  display: flex;
+}
+
+.game .nav-container {
+  display: block;
+}
+
+.gameDetails * {
+  color: white;
+  background-color: black;
+  justify-content: center; /* Added */
+  align-items: center; /* Added */
+}
+
+.gameDetails img {
+  width: 500px;
+  height: 500px;
+  margin-right: 10px;
+}
+
+.gameInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.gameDetails h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.gameDetails ul {
+  flex-direction: row;
+}
+
+.gameDetails ul.horizontal-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.gameDetails p {
+  padding: 0px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.gameDetails li {
+  margin-right: 10px;
+}

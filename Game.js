@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { auth, db } from "./utils/firebase.js";
+import { collection, addDoc } from "firebase/firestore";
 import "./styles/Game.css";
 import logo from "./assets/logo.jpg";
 import icon from "./assets/icon.jpg";
@@ -8,6 +10,18 @@ import { Link } from "react-router-dom";
 const Game = () => {
   const location = useLocation();
   const gameDetails = location.state?.gameDetails;
+  console.log(gameDetails);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const addToWishlist = () => {
+    alert("added");
+
+    const currentUser = auth.currentUser.uid;
+
+    addDoc(collection(db, currentUser), {
+      gameDetails,
+    });
+  };
 
   const convert = (release_date) => {
     if (release_date == null) {
@@ -34,7 +48,6 @@ const Game = () => {
       gameDetails.cover.image_id +
       ".jpg";
   }
-  console.log(gameDetails);
 
   return (
     <div className="game">
@@ -48,6 +61,10 @@ const Game = () => {
             />
             <Link to="/home" className="cc">
               CyberCrusaders
+            </Link>
+            <Link to="/WishList" className="WishList">
+              {" "}
+              Wishlist{" "}
             </Link>
           </div>
         </div>
@@ -85,6 +102,8 @@ const Game = () => {
           ) : (
             <p>No known information available.</p>
           )}
+
+          <button onClick={addToWishlist}> add to wishlist </button>
         </div>
       </div>
     </div>

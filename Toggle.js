@@ -12,9 +12,11 @@ const Toggle = ({ condition, name, type }) => {
   const buttonClassName = selectedFilter ? "selected" : "";
 
   return (
-    <button onClick={handleClick} className={buttonClassName}>
-      {name}
-    </button>
+    <div className="toggle">
+      <button onClick={handleClick} className={buttonClassName}>
+        {name}
+      </button>
+    </div>
   );
 };
 

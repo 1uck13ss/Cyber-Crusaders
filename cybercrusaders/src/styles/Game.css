@@ -3,15 +3,11 @@
   display: flex;
 }
 
-.game .nav-container {
-  display: block;
-}
-
 .gameDetails * {
   color: white;
   background-color: black;
-  justify-content: center; /* Added */
-  align-items: center; /* Added */
+  justify-content: center;
+  align-items: center;
 }
 
 .gameDetails img {

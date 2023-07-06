@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./styles/App.css";
 import logo from "./assets/logo.jpg";
 import footerlogo from "./assets/footerlogo.jpg";
@@ -9,6 +9,8 @@ import Pagination from "./Pagination";
 import Genre from "./Genre";
 import Platform from "./Platform";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./utils/firebase";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
@@ -18,6 +20,7 @@ const App = () => {
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
   const [recordsPerPage] = useState(10);
+  const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
 
@@ -126,6 +129,7 @@ const App = () => {
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = gameList.slice(indexOfFirstRecord, indexOfLastRecord);
+  console.log(user);
 
   return (
     <div className="App">
@@ -140,6 +144,10 @@ const App = () => {
             <a href="index.html" className="cc">
               CyberCrusaders
             </a>
+            <Link to="/WishList" className="WishList">
+              {" "}
+              Wishlist{" "}
+            </Link>
           </div>
           <nav>
             <Platform filterByPlatform={filterCondition} />

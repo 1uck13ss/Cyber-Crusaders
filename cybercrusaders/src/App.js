@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./styles/App.css";
-import logo from "./assets/logo.jpg";
 import footerlogo from "./assets/footerlogo.jpg";
 import joystick from "./assets/joystick.jpg";
 import Card from "./Card";
@@ -12,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
+import SignUp from "./components/SignUp";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
@@ -136,20 +136,18 @@ const App = () => {
       <header>
         <div className="nav-container">
           <div className="logo">
-            <img
-              src={logo}
-              alt="logo"
-              style={{ width: "30px", height: "30px" }}
-            />
-            <a href="index.html" className="cc">
+            <a className="cc">
               CyberCrusaders
             </a>
+            <div className = "emailname">
+              {user && <span>Hello {user.email}</span>} {/* Display the user's email */}
+            </div>
+          </div>
+          <nav>
             <Link to="/Profile" className="Profile">
               {" "}
               Profile{" "}
             </Link>
-          </div>
-          <nav>
             <Platform filterByPlatform={filterCondition} />
           </nav>
         </div>

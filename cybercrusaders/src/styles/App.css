@@ -40,12 +40,50 @@ header {
   color: rgb(205, 89, 216);
 }
 
-.cc {
-  border: none;
+.emailname {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 30px;
+  color: #51ff00;
+  position: relative;
+}
+
+.emailname::before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #51ff00;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+
+.emailname::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #51ff00;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.emailname:hover::before {
+  transform: scaleX(1);
+}
+
+.emailname:hover::after {
+  transform: scaleX(1);
 }
 
 .logo {
-  margin-top: 15px;
+  margin-top: 50px;
   align-items: top;
   position: relative;
   flex-direction: column;

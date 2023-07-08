@@ -24,10 +24,8 @@ const SignUp = () => {
     initialValues: {
       name: '',
       email: '',
-      username: '',
       password: '',
       confirmPassword: '',
-      mobileNumber: '',
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {

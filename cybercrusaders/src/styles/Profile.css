@@ -1,0 +1,85 @@
+.profilePage {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.profilePage * {
+  color: white;
+}
+
+.profile-config p {
+  font-size: 35px;
+}
+
+.profilePage .cc {
+  margin-left: -550px;
+}
+
+.profilePage .add {
+  z-index: 1;
+  margin-left: -80px;
+  margin-bottom: -60px;
+  scale: 0.3;
+}
+
+.profilePage h1 {
+  font-size: 30px;
+  background-color: black;
+}
+
+.profilePage img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.profilepage-name input {
+  margin-left: 2px;
+  width: 150px;
+}
+
+.profilepage-name input,
+.profilepage-name button {
+  margin-top: 20px;
+}
+
+.profilePage .profile-config h2 {
+  margin-top: 30px;
+  margin-left: -20px;
+  font-size: 20px;
+}
+
+.profilepage-name {
+  display: flex;
+}
+
+.profilepage-name img {
+  overflow: visible;
+  scale: 0.2;
+  margin-left: -30px;
+  margin-top: -20px;
+}
+
+.profilepage-name img:hover {
+  cursor: pointer;
+}
+
+.profile-config {
+  display: flex;
+  margin-right: auto;
+}
+
+.profile-config > div {
+  margin-left: 35px;
+  margin-top: 50px;
+  width: 500px;
+}
+
+.profile-config .profile {
+  padding-left: 100px;
+}
+
+.profile-config .profile-wishList {
+  margin-left: -100px;
+}

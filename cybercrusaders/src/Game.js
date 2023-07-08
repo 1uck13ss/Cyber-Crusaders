@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 const Game = () => {
   const location = useLocation();
   const gameDetails = location.state?.gameDetails;
-  console.log(gameDetails);
   const [isAdded, setIsAdded] = useState(false);
 
   const addToWishlist = () => {
@@ -62,9 +61,9 @@ const Game = () => {
             <Link to="/home" className="cc">
               CyberCrusaders
             </Link>
-            <Link to="/WishList" className="WishList">
+            <Link to="/Profile" className="Profile">
               {" "}
-              Wishlist{" "}
+              Profile{" "}
             </Link>
           </div>
         </div>

@@ -10,7 +10,8 @@ import Genre from "./Genre";
 import Platform from "./Platform";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./utils/firebase";
+import { auth, db } from "./utils/firebase";
+import { collection, onSnapshot } from "firebase/firestore";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
@@ -129,7 +130,6 @@ const App = () => {
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = gameList.slice(indexOfFirstRecord, indexOfLastRecord);
-  console.log(user);
 
   return (
     <div className="App">
@@ -144,9 +144,9 @@ const App = () => {
             <a href="index.html" className="cc">
               CyberCrusaders
             </a>
-            <Link to="/WishList" className="WishList">
+            <Link to="/Profile" className="Profile">
               {" "}
-              Wishlist{" "}
+              Profile{" "}
             </Link>
           </div>
           <nav>

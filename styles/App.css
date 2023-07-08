@@ -47,8 +47,6 @@ header {
 .logo {
   margin-top: 15px;
   align-items: top;
-  justify-content: flex-start;
-  display: flex;
   position: relative;
   flex-direction: column;
 }
@@ -72,7 +70,7 @@ header {
   margin-left: 25px;
 }
 
-.logo .WishList {
+.logo .Profile {
   color: white;
   font-size: 8px;
   margin-left: 90%;

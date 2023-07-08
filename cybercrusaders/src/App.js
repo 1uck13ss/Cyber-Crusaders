@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./styles/App.css";
 import logo from "./assets/logo.jpg";
 import footerlogo from "./assets/footerlogo.jpg";
@@ -8,78 +9,24 @@ import Pagination from "./Pagination";
 import Genre from "./Genre";
 import Platform from "./Platform";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./utils/firebase";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [currentPage, setCurrent] = useState(1);
-  const [recordsPerPage] = useState(8);
   const [original, setOriginal] = useState([]);
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
+  const [recordsPerPage] = useState(10);
+  const [user] = useAuthState(auth);
 
-  const paginate = (pageNumber) => {
-    setCurrent(pageNumber);
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchInfo();
   }, []);
-
-  const fetchInfo = async () => {
-    var myHeaders = new Headers();
-    myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
-    myHeaders.append("Content-Type", "text/plain");
-
-    const currentDate = Math.floor(Date.now() / 1000);
-
-    var raw = `fields name, first_release_date, cover.image_id, genres.name, platforms.name;
-      where first_release_date > ${currentDate};
-      limit 19;
-      sort first_release_date asc;`;
-
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    try {
-      const response = await fetch(
-        "https://yzyuo634g3.execute-api.us-west-2.amazonaws.com/production/v4/games",
-        requestOptions
-      );
-      const responseJson = await response.json();
-      setGameList(responseJson);
-      setOriginal(responseJson);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const filterCondition = (filter, type) => {
-    if (type && (!genres || !genres.includes(filter))) {
-      setGenres([...genres, filter]);
-    } else if (
-      !type &&
-      (!platforms ||
-        platforms.every(
-          (platform) =>
-            filter.toLowerCase().indexOf(platform.toLowerCase()) === -1
-        ))
-    ) {
-      setPlatforms([...platforms, filter]);
-    } else if (type) {
-      setGenres(genres.filter((g) => g !== filter));
-    } else {
-      setPlatforms(
-        platforms.filter(
-          (p) => filter.toLowerCase().indexOf(p.toLowerCase()) === -1
-        )
-      );
-    }
-  };
 
   useEffect(() => {
     const updateGameList = () => {
@@ -115,9 +62,74 @@ const App = () => {
     updateGameList();
   }, [original, platforms, genres]);
 
+  const fetchInfo = async () => {
+    var myHeaders = new Headers();
+    myHeaders.append("x-api-key", "e0kFMFio5QaHanAseqBII1Shr66hKS9n7uDXJHvh");
+    myHeaders.append("Content-Type", "text/plain");
+
+    const currentDate = Math.floor(Date.now() / 1000);
+
+    var raw = `fields name, first_release_date, cover.image_id, genres.name, platforms.name, summary,
+    release_dates;
+      where first_release_date > ${currentDate};
+      limit 19;
+      sort first_release_date asc;`;
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        "https://yzyuo634g3.execute-api.us-west-2.amazonaws.com/production/v4/games",
+        requestOptions
+      );
+      const responseJson = await response.json();
+      setGameList(responseJson);
+      setOriginal(responseJson);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const filterCondition = (filter, type) => {
+    if (type && (!genres || !genres.includes(filter))) {
+      setGenres([...genres, filter]);
+      return true;
+    } else if (
+      !type &&
+      (!platforms ||
+        platforms.every(
+          (platform) =>
+            filter.toLowerCase().indexOf(platform.toLowerCase()) === -1
+        ))
+    ) {
+      setPlatforms([...platforms, filter]);
+      return true;
+    } else if (type) {
+      setGenres(genres.filter((g) => g !== filter));
+      return false;
+    } else {
+      setPlatforms(
+        platforms.filter(
+          (p) => filter.toLowerCase().indexOf(p.toLowerCase()) === -1
+        )
+      );
+      return false;
+    }
+  };
+
+  const paginate = (pageNumber) => {
+    setCurrent(pageNumber);
+  };
+
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = gameList.slice(indexOfFirstRecord, indexOfLastRecord);
+  console.log(user);
 
   return (
     <div className="App">
@@ -132,6 +144,10 @@ const App = () => {
             <a href="index.html" className="cc">
               CyberCrusaders
             </a>
+            <Link to="/WishList" className="WishList">
+              {" "}
+              Wishlist{" "}
+            </Link>
           </div>
           <nav>
             <Platform filterByPlatform={filterCondition} />
@@ -148,12 +164,20 @@ const App = () => {
           <motion.div layout className="product-container">
             <AnimatePresence>
               {currentRecords.map((game) => (
-                <Card
+                <div
                   key={game.id}
-                  name={game.name}
-                  first_release_date={game.first_release_date}
-                  cover={game.cover ? game.cover.image_id : null}
-                />
+                  onClick={() =>
+                    navigate(`/Game/${game.id}`, {
+                      state: { gameDetails: game },
+                    })
+                  }
+                >
+                  <Card
+                    name={game.name}
+                    first_release_date={game.first_release_date}
+                    cover={game.cover ? game.cover.image_id : null}
+                  />
+                </div>
               ))}
             </AnimatePresence>
           </motion.div>

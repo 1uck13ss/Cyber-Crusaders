@@ -1,15 +1,14 @@
-button {
+.toggle button {
   color: white;
   border: none;
   outline: none;
   box-shadow: none;
 }
 
-button:focus {
-  color: purple;
+.toggle button:focus {
   outline: none;
 }
 
-button.selected {
+.toggle button.selected {
   color: purple;
 }

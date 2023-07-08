@@ -21,7 +21,7 @@ img {
   justify-content: center;
 }
 
-h3 {
+.card-container h3 {
   height: 30px;
   overflow: hidden;
   text-align: center;
@@ -48,6 +48,36 @@ p {
   margin-right: 10px;
   width: 200px;
   height: 330px;
+}
+
+.card-container:hover {
+  cursor: pointer;
+}
+
+.card-container:hover .product-img {
+  transform: scale(1.2);
+  transition: 1s;
+}
+
+.card-container:hover .product-info {
+  transform: scale(1.2) translateY(3px);
+  transition: 1s;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.card-container:hover .product-info h3 {
+  display: inline-block;
+  animation: marquee 8s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes blink {

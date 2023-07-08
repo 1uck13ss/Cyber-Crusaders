@@ -7,11 +7,11 @@ import Card from "./Card";
 import Pagination from "./Pagination";
 import Genre from "./Genre";
 import Platform from "./Platform";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, color } from "framer-motion";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
-import SignUp from "./components/SignUp";
+
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
@@ -24,6 +24,11 @@ const App = () => {
   const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    auth.signOut();
+    window.location.reload();
+  };
 
   useEffect(() => {
     fetchInfo();
@@ -148,6 +153,15 @@ const App = () => {
               {" "}
               Profile{" "}
             </Link>
+            
+            
+            {user && (
+              <button onClick={handleLogout} style = {{ color: 'white', backgroundColor: 'green' }}>
+                Log out
+              </button>
+            )}
+
+
             <Platform filterByPlatform={filterCondition} />
           </nav>
         </div>

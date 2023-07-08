@@ -277,6 +277,10 @@ a:hover .fa-telegram {
   margin-block-end: 15px;
 }
 
+.contact-item:not(:first-child) {
+  margin-block-end: 15px;
+}
+
 .contact-link {
   color: white;
 }

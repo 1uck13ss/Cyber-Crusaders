@@ -22,12 +22,18 @@ const App = () => {
   const [platforms, setPlatforms] = useState([]);
   const [recordsPerPage] = useState(10);
   const [user] = useAuthState(auth);
+  const [emailSubscribed, setEmailSubscribed] = useState(false); // Track email subscription status
+
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
     auth.signOut();
     window.location.reload();
+  };
+
+  const handleEmailSubscription = () => {
+    setEmailSubscribed(true);
   };
 
   useEffect(() => {
@@ -260,7 +266,10 @@ const App = () => {
               <p className="title footer-list-title has-after">
                 Games Updates Signup
               </p>
-              <form action="./index.html" method="get" className="footer-form">
+              {emailSubscribed ? (
+                <p className = "subscription"> Thank you for subscribing! :)</p>
+              ) : (
+              <form onSubmit={handleEmailSubscription} method="get" className="footer-form">
                 <input
                   type="email"
                   name="email_address"
@@ -274,6 +283,7 @@ const App = () => {
                   Subscribe Now
                 </button>
               </form>
+              )}
             </div>
           </div>
         </div>

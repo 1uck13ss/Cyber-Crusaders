@@ -152,15 +152,12 @@ const App = () => {
             <Link to="/Profile" className="Profile">
               {" "}
               Profile{" "}
-            </Link>
-            
-            
+            </Link> 
             {user && (
               <button onClick={handleLogout} style = {{ color: 'white', backgroundColor: 'green' }}>
                 Log out
               </button>
             )}
-
 
             <Platform filterByPlatform={filterCondition} />
           </nav>

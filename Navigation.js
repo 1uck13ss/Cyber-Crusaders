@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import SignUp from "./components/SignUp";
 import App from "./App";
-import AuthDetails from "./components/AuthDetails";
 import Game from "./Game";
 
 const Navigation = () => {
@@ -27,7 +26,6 @@ const Navigation = () => {
           isLoggedIn ? (
             <>
               <App />
-              <AuthDetails />
             </>
           ) : (
             <Navigate to="/login" />

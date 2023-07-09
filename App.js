@@ -150,21 +150,21 @@ const App = () => {
             <a className="cc">
               CyberCrusaders
             </a>
-            <div className = "emailname">
-              {user && <span>Hello {user.email}</span>} {/* Display the user's email */}
+            <div className="user-container">
+              <div className="emailname">
+                {user && <span>Hello {user.email}</span>}
+              </div>
+              <div className="profile">
+                <Link to="/Profile" className="Profile">
+                  My Profile
+                </Link>
+              </div>
+                <button onClick={handleLogout} className="logout-button">
+                  Log out
+                </button>
             </div>
           </div>
           <nav>
-            <Link to="/Profile" className="Profile">
-              {" "}
-              Profile{" "}
-            </Link> 
-            {user && (
-              <button onClick={handleLogout} style = {{ color: 'white', backgroundColor: 'green' }}>
-                Log out
-              </button>
-            )}
-
             <Platform filterByPlatform={filterCondition} />
           </nav>
         </div>
@@ -212,7 +212,7 @@ const App = () => {
         <div className="section footer-top">
           <div className="container">
             <div className="footer-brand">
-              <a href="#" className="logo">
+              <a className="logo">
                 <img
                   src={footerlogo}
                   width="75"
@@ -221,7 +221,7 @@ const App = () => {
                   alt="CC logo"
                 />
               </a>
-              <p className="footer-text">CyberCrusaders team details</p>
+              <p className="footer-text"></p>
               <div className="social-media">
                 <a href="https://www.linkedin.com/">
                   <font color="#007cc4">
@@ -248,7 +248,7 @@ const App = () => {
               <div className="contact-item">
                 <span className="span">Location:</span>
                 <address className="contact-link">
-                  National University of Singapore, xxx kent ridge
+                  National University of Singapore, 21 Lower Kent Ridge Rd
                 </address>
               </div>
               <div className="contact-item">

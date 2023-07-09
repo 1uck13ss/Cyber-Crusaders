@@ -15,6 +15,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const recaptchaRef = React.createRef();
   const [catchline, setCatchline] = useState('');
+  const [loginError, setLoginError] = useState(false); // State variable to track login error
 
   useEffect(() => {
     const randomCatchline = catchlines[Math.floor(Math.random() * catchlines.length)];
@@ -33,6 +34,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
         console.log("Logged in!");
       } catch (error) {
         console.log('Login error:', error); // Handle login error, display error message, etc.
+        
       }
     },
   });
@@ -49,7 +51,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
       // Redirect or perform other actions after successful login
     } catch (error) {
       console.log('Login error:', error);
-      // Handle login error, display error message, etc.
+      alert("Incorrect email or password. Please try again.");
     }
   };
 

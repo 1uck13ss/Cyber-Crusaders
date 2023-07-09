@@ -82,6 +82,22 @@ header {
   transform: scaleX(1);
 }
 
+.user-container {
+  display: flex;
+  align-items: center;
+}
+
+.Profile{
+  font-size: 50px;
+  margin-top: 10px;
+}
+
+.logout-button {
+  color: white;
+  margin-left: 50px;
+  margin-top: 12px;
+}
+
 .logo {
   margin-top: 50px;
   align-items: top;
@@ -110,8 +126,8 @@ header {
 
 .logo .Profile {
   color: white;
-  font-size: 8px;
-  margin-left: 90%;
+  font-size: 20px;
+  /*margin-left: 90%;*/
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6,
     0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
   font-weight: bold;
@@ -180,7 +196,6 @@ nav a {
 }
 
 .footer-text {
-  margin-block: 20px 25px;
   color: white;
 }
 
@@ -306,7 +321,7 @@ a:hover .fa-telegram {
 }
 
 .copyright {
-  padding: 20px 5px; /* 1st px = top/btm, 2nd px = left/right */
+  margin-top: 50px;
   color: white;
 }
 

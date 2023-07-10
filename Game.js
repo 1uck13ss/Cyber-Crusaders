@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { auth, db } from "./utils/firebase.js";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  writeBatch,
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import "./styles/Game.css";
 import logo from "./assets/logo.jpg";
 import icon from "./assets/icon.jpg";
@@ -12,14 +19,30 @@ const Game = () => {
   const gameDetails = location.state?.gameDetails;
   const [isAdded, setIsAdded] = useState(false);
 
-  const addToWishlist = () => {
+  const addToWishlist = async () => {
     alert("added");
 
     const currentUser = auth.currentUser.uid;
 
-    addDoc(collection(db, currentUser), {
-      gameDetails,
-    });
+    var dbRef = collection(db, currentUser);
+    const gameQuery = query(
+      dbRef,
+      where("gameDetails.id", "==", gameDetails.id)
+    );
+
+    const querySnapshot = await getDocs(gameQuery);
+
+    if (!querySnapshot.empty) {
+      const batch = writeBatch(db);
+
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+    } else {
+      await addDoc(dbRef, { gameDetails });
+    }
   };
 
   const convert = (release_date) => {

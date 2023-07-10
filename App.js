@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./styles/App.css";
-import logo from "./assets/logo.jpg";
 import footerlogo from "./assets/footerlogo.jpg";
 import joystick from "./assets/joystick.jpg";
 import Card from "./Card";
 import Pagination from "./Pagination";
 import Genre from "./Genre";
 import Platform from "./Platform";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, color } from "framer-motion";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
@@ -22,8 +21,18 @@ const App = () => {
   const [platforms, setPlatforms] = useState([]);
   const [recordsPerPage] = useState(10);
   const [user] = useAuthState(auth);
+  const [emailSubscribed, setEmailSubscribed] = useState(false); // Track email subscription status
 
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    auth.signOut();
+    window.location.reload();
+  };
+
+  const handleEmailSubscription = () => {
+    setEmailSubscribed(true);
+  };
 
   useEffect(() => {
     fetchInfo();
@@ -136,18 +145,20 @@ const App = () => {
       <header>
         <div className="nav-container">
           <div className="logo">
-            <img
-              src={logo}
-              alt="logo"
-              style={{ width: "30px", height: "30px" }}
-            />
-            <a href="index.html" className="cc">
-              CyberCrusaders
-            </a>
-            <Link to="/Profile" className="Profile">
-              {" "}
-              Profile{" "}
-            </Link>
+            <a className="cc">CyberCrusaders</a>
+            <div className="user-container">
+              <div className="emailname">
+                {user && <span>Hello {user.email}</span>}
+              </div>
+              <div className="profile">
+                <Link to="/Profile" className="Profile">
+                  My Profile
+                </Link>
+              </div>
+              <button onClick={handleLogout} className="logout-button">
+                Log out
+              </button>
+            </div>
           </div>
           <nav>
             <Platform filterByPlatform={filterCondition} />
@@ -197,7 +208,7 @@ const App = () => {
         <div className="section footer-top">
           <div className="container">
             <div className="footer-brand">
-              <a href="#" className="logo">
+              <a className="logo">
                 <img
                   src={footerlogo}
                   width="75"
@@ -206,7 +217,7 @@ const App = () => {
                   alt="CC logo"
                 />
               </a>
-              <p className="footer-text">CyberCrusaders team details</p>
+              <p className="footer-text"></p>
               <div className="social-media">
                 <a href="https://www.linkedin.com/">
                   <font color="#007cc4">
@@ -233,7 +244,7 @@ const App = () => {
               <div className="contact-item">
                 <span className="span">Location:</span>
                 <address className="contact-link">
-                  National University of Singapore, xxx kent ridge
+                  National University of Singapore, 21 Lower Kent Ridge Rd
                 </address>
               </div>
               <div className="contact-item">
@@ -251,20 +262,28 @@ const App = () => {
               <p className="title footer-list-title has-after">
                 Games Updates Signup
               </p>
-              <form action="./index.html" method="get" className="footer-form">
-                <input
-                  type="email"
-                  name="email_address"
-                  required
-                  placeholder="Your Email"
-                  autocomplete="off"
-                  className="input-field"
-                />
-                <br />
-                <button type="submit" className="btn" data-btn>
-                  Subscribe Now
-                </button>
-              </form>
+              {emailSubscribed ? (
+                <p className="subscription"> Thank you for subscribing! :)</p>
+              ) : (
+                <form
+                  onSubmit={handleEmailSubscription}
+                  method="get"
+                  className="footer-form"
+                >
+                  <input
+                    type="email"
+                    name="email_address"
+                    required
+                    placeholder="Your Email"
+                    autocomplete="off"
+                    className="input-field"
+                  />
+                  <br />
+                  <button type="submit" className="btn" data-btn>
+                    Subscribe Now
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

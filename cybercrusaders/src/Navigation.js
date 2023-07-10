@@ -3,9 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
 import SignUp from "./components/SignUp";
 import App from "./App";
-import AuthDetails from "./components/AuthDetails";
 import Game from "./Game";
-import Profile from "./Profile";
 
 const Navigation = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,7 +26,6 @@ const Navigation = () => {
           isLoggedIn ? (
             <>
               <App />
-              <AuthDetails />
             </>
           ) : (
             <Navigate to="/login" />
@@ -36,7 +33,6 @@ const Navigation = () => {
         }
       />
       <Route path="/Game/:id" element={<Game from="/App" />} />
-      <Route path="/Profile" element={<Profile />} />
       <Route path="/*" element={<Navigate to="/login" />} />{" "}
       {/* Add this route */}
     </Routes>

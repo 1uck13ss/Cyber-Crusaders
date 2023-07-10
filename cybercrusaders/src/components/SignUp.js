@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { validationSchema } from '../utils/validation.js';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../utils/firebase.js";
-import gifBackground from '../assets/gifBackground1.gif';
+import gifBackground from '../assets/gifBackground.gif';
+
+
+const catchlines = ['Join us today!', 'Unlock exclusive benefits!', 'Discover a new world!', 'Experience the future!', 'Level up your journey!'];
 
 const SignUp = () => {
 
   const navigate = useNavigate(); //Get the navigate function from react-router
 
+  const [catchline, setCatchline] = useState('');
+
+  useEffect(() => {
+    const randomCatchline = catchlines[Math.floor(Math.random() * catchlines.length)];
+    setCatchline(randomCatchline);
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       name: '',
       email: '',
-      username: '',
       password: '',
       confirmPassword: '',
-      mobileNumber: '',
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -58,12 +66,12 @@ const SignUp = () => {
 
   return (
     <div className="signUpContainer" style={{ width: '100vw', height: '100vh', backgroundImage: `url(${gifBackground})`, backgroundSize: 'cover', overflow: 'hidden' }}>
-      <h1 className="text-green text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent' }}>
-        Form Validation In JavaScript
+      <h1 className="text-green text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent', fontFamily: 'Arial, sans-serif', letterSpacing: '2px', textShadow: '2px 2px 4px #00ccff, 4px 4px 6px #0066cc' }}>
+        Sign Up Form
       </h1>
 
       <h4 className="text-blue text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent' }}>
-        Sign Up
+        {catchline}
       </h4>
 
       <div className="sign-up-container" style={{ backgroundColor: 'transparent', marginTop: '80px' }}>

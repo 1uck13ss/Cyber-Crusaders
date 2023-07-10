@@ -8,24 +8,21 @@ import logo from "./assets/logo.jpg";
 import edit from "./assets/edit.png";
 import { Link } from "react-router-dom";
 import plus from "./assets/plus.jpg";
+import WishListCard from "./WishListCard";
 
 const Profile = () => {
   const [list, setList] = useState([]);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState("");
   const [name, setName] = useState("John Doe");
-  const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+    "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
   );
   const inputRef = useRef(null);
 
   useEffect(() => {
     const dbRef = collection(db, auth.currentUser.uid);
-    if (auth.currentUser?.photoURL) {
-      setPhotoURL(auth.currentUser.photoURL);
-    }
     const unsubscribe = onSnapshot(dbRef, (snapshot) => {
       const documents = [];
       snapshot.forEach((doc) => {
@@ -38,34 +35,14 @@ const Profile = () => {
     };
   }, []);
 
-  const storageRef = ref(storage, `profilePictures/${auth.currentUser.uid}`);
-
-  const handlePicChange = (e) => {
-    if (e.target.files[0]) {
-      setPhoto(e.target.files[0]);
-    }
-  };
-
-  const handlePicClick = () => {
-    if (photo) {
-      setLoading(true);
-      const uploadTask = uploadBytes(storageRef, photo);
-      uploadTask
-        .then((snapshot) => {
-          return getDownloadURL(storageRef);
-        })
-        .then((downloadURL) => {
-          setPhotoURL(downloadURL);
-          return updateProfile(auth.currentUser, { photoURL: downloadURL });
-        })
-        .then(() => {
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log("Error uploading profile picture:", error);
-          setLoading(false);
-        });
-    }
+  const upload = async () => {
+    const file = inputRef.current.files[0];
+    const storageRef = ref(storage, "/images/" + auth.currentUser.uid);
+    const metadata = {
+      contentType: "image/*",
+    };
+    setPhotoURL(URL.createObjectURL(file));
+    const uploadingElement = await uploadBytes(storageRef, file, metadata);
   };
 
   const handleNameChange = () => {
@@ -118,7 +95,7 @@ const Profile = () => {
             <div className="profile-config">
               <div className="profile">
                 <p>Profile</p>
-                <img src={photoURL} alt="profile pic" />
+                <img src={photoURL} alt="profile pic" className="profile-pic" />
                 <img
                   src={plus}
                   alt="add"
@@ -128,7 +105,7 @@ const Profile = () => {
                 <input
                   type="file"
                   ref={inputRef}
-                  onChange={handlePicChange}
+                  onChange={upload}
                   accept="image/*"
                   style={{ display: "none" }}
                 />
@@ -156,6 +133,28 @@ const Profile = () => {
               </div>
               <div className="profile-wishList">
                 <h1> Wish List </h1>
+                <ul>
+                  {list.map((game) => {
+                    return (
+                      <li>
+                        {" "}
+                        <WishListCard
+                          className="wishListCard"
+                          name={game.gameDetails.name}
+                          first_release_date={
+                            game.gameDetails.first_release_date
+                          }
+                          cover={
+                            game.gameDetails.cover
+                              ? game.gameDetails.cover.image_id
+                              : null
+                          }
+                          id={game.gameDetails.id}
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             </div>
           </div>

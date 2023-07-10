@@ -1,0 +1,27 @@
+.wishListCard {
+  display: flex;
+  width: 75vw;
+}
+
+.wishListCard h1 {
+  font-size: 25px;
+}
+
+.wishListCard h3 {
+  font-size: 20px;
+}
+
+.wishListCard .redX {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  margin-left: -5px;
+  margin-top: -5px;
+}
+
+.wishListCard img {
+  height: 100px;
+  width: 100px;
+  object-fit: fill;
+  border-radius: 0;
+}

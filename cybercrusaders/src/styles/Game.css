@@ -1,7 +1,19 @@
-.gameDetails {
+.gamecc {
+  margin-left: 20px;
+  margin-top: 40px;
+}
+
+.game {
   display: flex;
+  flex-direction: row;
   height: 100vh;
   background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+  background-attachment: fixed; 
+}
+
+.gameDetails {
+  display: flex;
+  margin-top: 150px;
 }
 
 .gameDetails * {
@@ -13,8 +25,6 @@
 
 .gameDetails img {
   width: 450px;
-  margin-right: 10px;
-  padding: 20px;
 }
 
 .gameInfo {

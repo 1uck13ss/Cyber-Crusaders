@@ -256,7 +256,7 @@ const App = () => {
                 <a href="mailto:e0941187@u.nus.edu" className="contact-link">
                   Lim Jun Ming
                 </a>
-                ,
+                <br></br>
                 <a href="mailto:e0959239@u.nus.edu" className="contact-link">
                   Pung Kah Jyun
                 </a>

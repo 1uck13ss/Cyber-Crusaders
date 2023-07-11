@@ -15,7 +15,9 @@ const Comment = ({ onSubmit }) => {
         onChange={(e) => setText(e.target.value)}
       ></textarea>
       <button type="submit">submit</button>
-      <button>cancel</button>
+      <button type="button" onClick={() => setText("")}>
+        cancel
+      </button>
     </form>
   );
 };

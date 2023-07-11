@@ -14,7 +14,6 @@ import {
   orderBy,
 } from "firebase/firestore";
 import "./styles/Game.css";
-import logo from "./assets/logo.jpg";
 import icon from "./assets/icon.jpg";
 import { Link } from "react-router-dom";
 import Comment from "./Comment.js";
@@ -189,11 +188,6 @@ const Game = () => {
       <header>
         <div className="nav-container">
           <div className="logo">
-            <img
-              src={logo}
-              alt="logo"
-              style={{ width: "30px", height: "30px" }}
-            />
             <Link to="/home" className="cc">
               CyberCrusaders
             </Link>

@@ -145,7 +145,8 @@ const App = () => {
       <header>
         <div className="nav-container">
           <div className="logo">
-            <a className="cc">CyberCrusaders</a>
+            <a className="cc">
+              CyberCrusaders</a>
           </div>
           <nav className="platform-filter">
             <Platform filterByPlatform={filterCondition} />
@@ -220,24 +221,6 @@ const App = () => {
                   alt="CC logo"
                 />
               </a>
-              <p className="footer-text"></p>
-              <div className="social-media">
-                <a href="https://www.linkedin.com/">
-                  <font color="#007cc4">
-                    <i className="fab fa-linkedin"></i>
-                  </font>
-                </a>
-                <a href="https://github.com/1uck13ss/Cyber-Crusaders">
-                  <font color="#007cc4">
-                    <i className="fab fa-github"></i>
-                  </font>
-                </a>
-                <a href="https://t.me/kahjyun">
-                  <font color="#007cc4">
-                    <i className="fab fa-telegram"></i>
-                  </font>
-                </a>
-              </div>
             </div>
             <div className="footer-list-img">
               <img src={joystick} alt="logo" />
@@ -260,6 +243,23 @@ const App = () => {
                   Pung Kah Jyun
                 </a>
               </div>
+              <div className="social-media">
+                <a href="https://www.linkedin.com/">
+                  <font color="#007cc4">
+                    <i className="fab fa-linkedin"></i>
+                  </font>
+                </a>
+                <a href="https://github.com/1uck13ss/Cyber-Crusaders">
+                  <font color="#007cc4">
+                    <i className="fab fa-github"></i>
+                  </font>
+                </a>
+                <a href="https://t.me/kahjyun">
+                  <font color="#007cc4">
+                    <i className="fab fa-telegram"></i>
+                  </font>
+                </a>
+              </div>
             </div>
             <div className="footer-list">
               <p className="title footer-list-title has-after">
@@ -280,6 +280,7 @@ const App = () => {
                     placeholder="Your Email"
                     autocomplete="off"
                     className="input-field"
+                    value={user.email}
                   />
                   <br />
                   <button type="submit" className="btn" data-btn>

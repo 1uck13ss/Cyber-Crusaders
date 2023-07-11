@@ -3,18 +3,21 @@
   flex-direction: row;
   height: 100vh;
   background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+  background-attachment: fixed;
 }
 
 .profilePage * {
   color: white;
 }
 
-.profile-config p {
-  font-size: 35px;
+.profilecc {
+  margin-right: 700px;
+  margin-top: 10px;
 }
 
-.profilePage .cc {
-  margin-left: -550px;
+
+.profile-config p {
+  font-size: 35px;
 }
 
 .profilePage .add {
@@ -45,6 +48,13 @@
 .profilepage-name input,
 .profilepage-name button {
   margin-top: 20px;
+}
+
+.nav-container-profile {
+  margin-top: 35px;
+  margin-right: 55px;
+  position: fixed;
+  justify-content: space-between;
 }
 
 .wishListCard {

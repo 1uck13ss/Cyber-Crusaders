@@ -3,7 +3,6 @@
   flex-direction: row;
   height: 100vh;
   background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
-  background-attachment: fixed;
 }
 
 .profilePage * {
@@ -62,7 +61,7 @@
 }
 
 .wishListGame {
-  height: 75vh;
+  height: 500px;
   overflow-y: auto;
 }
 

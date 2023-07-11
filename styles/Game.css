@@ -5,14 +5,16 @@
 
 .game {
   display: flex;
-  flex-direction: row;
-  height: 100vh;
+  flex-direction: column;
+  align-items: flex-start;
   background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
   background-attachment: fixed; 
 }
 
 .gameDetails {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-top: 150px;
 }
 
@@ -25,12 +27,26 @@
 
 .gameDetails img {
   width: 450px;
+  background-color: black;
 }
 
 .gameInfo {
   display: flex;
   flex-direction: column;
+  background-color: black;
 }
+
+.gameInfo button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 
 .gameDetails h3 {
   font-size: 15px;

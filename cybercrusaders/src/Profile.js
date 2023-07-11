@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { updateProfile } from "firebase/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import "./styles/Profile.css";
-import logo from "./assets/logo.jpg";
 import edit from "./assets/edit.png";
 import { Link } from "react-router-dom";
 import plus from "./assets/plus.jpg";
@@ -99,14 +98,9 @@ const Profile = () => {
   return (
     <div className="profilePage">
       <header>
-        <div className="nav-container">
+        <div className="nav-container-profile">
           <div className="logo">
-            <img
-              src={logo}
-              alt="logo"
-              style={{ width: "30px", height: "30px" }}
-            />
-            <Link to="/home" className="cc">
+            <Link to="/home" className="profilecc">
               CyberCrusaders
             </Link>
             <div className="profile-config">

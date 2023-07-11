@@ -73,7 +73,7 @@ const LoginForm = ({ onLogin, isLoggedIn }) => {
   return (
     <div className="loginContainer" style={{ width: '100vw', height: '100vh', backgroundImage: `url(${gifBackground})`, backgroundSize: 'cover', overflow: 'hidden' }}>
       <h1 className="text-green text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent', fontFamily: 'Arial, sans-serif', letterSpacing: '2px', textShadow: '2px 2px 4px #00ccff, 4px 4px 6px #0066cc' }}>
-        Form LOGIN
+        FORM LOGIN
       </h1>
 
       <h4 className="text-blue text-center font-weight-bold" style={{ color: 'floralwhite', fontSize: '40px', background: 'transparent' }}>

@@ -11,12 +11,15 @@ import {
   getDocs,
   setDoc,
   doc,
+  orderBy,
 } from "firebase/firestore";
 import "./styles/Game.css";
 import logo from "./assets/logo.jpg";
 import icon from "./assets/icon.jpg";
 import { Link } from "react-router-dom";
 import Comment from "./Comment.js";
+import CommentData from "./CommentData.js";
+import Comments from "./Comments";
 
 const Game = () => {
   const location = useLocation();
@@ -52,21 +55,83 @@ const Game = () => {
     };
 
     const fetchComments = async () => {
-      await getDocs();
+      const commentRef = query(
+        collection(db, gameDetails.id.toString()),
+        orderBy("index")
+      );
+      if (commentRef) {
+        const snapshot = await getDocs(commentRef);
+        let list = [];
+        snapshot.forEach((doc) => {
+          var comment = doc.data();
+          list.push(
+            new CommentData(
+              comment.index,
+              comment.comment,
+              comment.name,
+              comment.photo,
+              comment.id
+            )
+          );
+        });
+        console.log(list);
+        list.sort((a, b) => a.index - b.index);
+        setComments(list);
+        console.log(list);
+      }
     };
 
     fetchProfilePic();
     fetchUserName();
+    fetchComments();
     setLoading(false);
-  }, []);
+  }, [gameDetails.id]);
+
+  let current = comments.length;
+
+  const handleDelete = async (commentID) => {
+    console.log(comments);
+    const list = comments.filter((a) => {
+      return a.index !== commentID;
+    });
+    console.log(list);
+    setComments(list);
+    var db_ref = collection(db, gameDetails.id.toString());
+    let batch = writeBatch(db);
+    const comment_ref = query(db_ref, where("index", "==", commentID));
+    const querySnapshot = await getDocs(comment_ref);
+    querySnapshot.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    return batch.commit();
+  };
 
   const onSubmit = async (text, setText) => {
-    await setDoc(doc(db, "comments", gameDetails.id), {
-      comment: text,
+    await setDoc(doc(db, gameDetails.id.toString(), current.toString()), {
+      index: current,
       name: name,
+      comment: text,
       photo: photoURL,
+      id: auth.currentUser.uid,
     });
+    const comment = new CommentData(
+      current,
+      text,
+      name,
+      photoURL,
+      auth.currentUser.uid
+    );
     setText("");
+    var list = [...comments, comment];
+    list.sort((a, b) => a.index - b.index);
+    setComments(list, () => {
+      current += comment.length;
+    });
+    current = list.length;
+  };
+
+  const shouldDisplay = (id) => {
+    return id === auth.currentUser.uid;
   };
 
   const addToWishlist = async () => {
@@ -174,7 +239,15 @@ const Game = () => {
           )}
 
           <button onClick={addToWishlist}> add to wishlist </button>
+          <h1> Comments </h1>
           <Comment onSubmit={onSubmit}></Comment>
+          {comments.map((comment) => (
+            <Comments
+              Comment={comment}
+              display={shouldDisplay}
+              handleDelete={handleDelete}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -1,25 +1,96 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { auth, db } from "./utils/firebase.js";
-import { collection, addDoc } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import {
+  writeBatch,
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  setDoc,
+  doc,
+} from "firebase/firestore";
 import "./styles/Game.css";
 import logo from "./assets/logo.jpg";
 import icon from "./assets/icon.jpg";
 import { Link } from "react-router-dom";
+import Comment from "./Comment.js";
 
 const Game = () => {
   const location = useLocation();
   const gameDetails = location.state?.gameDetails;
   const [isAdded, setIsAdded] = useState(false);
+  const [name, setName] = useState("Guest");
+  const [photoURL, setPhotoURL] = useState(
+    "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
+  );
+  const [loading, setLoading] = useState(true);
+  const [comments, setComments] = useState([]);
 
-  const addToWishlist = () => {
-    alert("added");
+  useEffect(() => {
+    const fetchProfilePic = async () => {
+      const storage = getStorage();
+      const pic = ref(storage, "images/" + auth.currentUser.uid);
+      try {
+        const url = await getDownloadURL(pic);
+        setPhotoURL(url);
+      } catch (error) {
+        console.log("No profile pic found");
+      }
+    };
 
+    const fetchUserName = async () => {
+      const username = collection(db, "user");
+      const snapshot = await getDocs(username);
+      snapshot.forEach((doc) => {
+        if (doc.id === auth.currentUser.uid) {
+          setName(doc.data().name);
+        }
+      });
+    };
+
+    const fetchComments = async () => {
+      await getDocs();
+    };
+
+    fetchProfilePic();
+    fetchUserName();
+    setLoading(false);
+  }, []);
+
+  const onSubmit = async (text, setText) => {
+    await setDoc(doc(db, "comments", gameDetails.id), {
+      comment: text,
+      name: name,
+      photo: photoURL,
+    });
+    setText("");
+  };
+
+  const addToWishlist = async () => {
     const currentUser = auth.currentUser.uid;
 
-    addDoc(collection(db, currentUser), {
-      gameDetails,
-    });
+    var dbRef = collection(db, currentUser);
+    const gameQuery = query(
+      dbRef,
+      where("gameDetails.id", "==", gameDetails.id)
+    );
+
+    const querySnapshot = await getDocs(gameQuery);
+
+    if (!querySnapshot.empty) {
+      const batch = writeBatch(db);
+
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+    } else {
+      await addDoc(dbRef, { gameDetails });
+    }
   };
 
   const convert = (release_date) => {
@@ -103,6 +174,7 @@ const Game = () => {
           )}
 
           <button onClick={addToWishlist}> add to wishlist </button>
+          <Comment onSubmit={onSubmit}></Comment>
         </div>
       </div>
     </div>

@@ -141,28 +141,31 @@ const App = () => {
   const currentRecords = gameList.slice(indexOfFirstRecord, indexOfLastRecord);
 
   return (
-    <div className="App">
+    <div className="wrapper">
       <header>
         <div className="nav-container">
           <div className="logo">
             <a className="cc">CyberCrusaders</a>
-            <div className="user-container">
-              <div className="emailname">
-                {user && <span>Hello {user.email}</span>}
-              </div>
-              <div className="profile">
-                <Link to="/Profile" className="Profile">
-                  My Profile
-                </Link>
-              </div>
-              <button onClick={handleLogout} className="logout-button">
-                Log out
-              </button>
-            </div>
           </div>
-          <nav>
+          <nav className="platform-filter">
             <Platform filterByPlatform={filterCondition} />
           </nav>
+        </div>
+
+        <div className="nav-container1">
+          <div className="user-container">
+            <div className="emailname">
+              {user && <span>Hello {user.email}</span>}
+            </div>
+            <div className="profile">
+              <Link to="/Profile" className="Profile">
+                My Profile
+              </Link>
+            </div>
+            <button onClick={handleLogout} className="logout-button">
+              Log out
+            </button>
+          </div>
         </div>
       </header>
 

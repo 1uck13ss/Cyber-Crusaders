@@ -1,8 +1,8 @@
 import { auth, db, storage } from "./utils/firebase.js";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, setDoc, doc } from "firebase/firestore";
 import { useState, useEffect, useRef } from "react";
 import { updateProfile } from "firebase/auth";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import "./styles/Profile.css";
 import logo from "./assets/logo.jpg";
 import edit from "./assets/edit.png";
@@ -14,7 +14,7 @@ const Profile = () => {
   const [list, setList] = useState([]);
   const [editingName, setEditingName] = useState(false);
   const [newName, setNewName] = useState("");
-  const [name, setName] = useState("John Doe");
+  const [name, setName] = useState("Guest");
   const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState(
     "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
@@ -22,6 +22,23 @@ const Profile = () => {
   const inputRef = useRef(null);
 
   useEffect(() => {
+    const storage = getStorage();
+    const pic = ref(storage, "images/" + auth.currentUser.uid);
+    if (pic) {
+      getDownloadURL(pic)
+        .then((url) => setPhotoURL(url))
+        .catch((error) => {
+          console.log("No profile pic found");
+        });
+    }
+    const username = collection(db, "user");
+    onSnapshot(username, (names) => {
+      names.forEach((doc) => {
+        if (doc.id === auth.currentUser.uid) {
+          setName(doc.data().name);
+        }
+      });
+    });
     const dbRef = collection(db, auth.currentUser.uid);
     const unsubscribe = onSnapshot(dbRef, (snapshot) => {
       const documents = [];
@@ -60,7 +77,7 @@ const Profile = () => {
     }
   };
 
-  const saveName = () => {
+  const saveName = async () => {
     if (newName !== auth.currentUser.displayName) {
       updateProfile(auth.currentUser, { displayName: newName })
         .then(() => {
@@ -70,9 +87,9 @@ const Profile = () => {
           console.log("Error updating display name:", error);
         });
     }
-
     setEditingName(false);
     setName(newName);
+    await setDoc(doc(db, "user", auth.currentUser.uid), { name: newName });
   };
 
   const cancelNameChange = () => {

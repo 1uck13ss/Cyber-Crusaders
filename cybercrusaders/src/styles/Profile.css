@@ -32,6 +32,8 @@
   height: 100px;
   width: 100px;
   border-radius: 50%;
+  object-fit: fill;
+  overflow: hidden;
 }
 
 .profilepage-name input {
@@ -42,6 +44,15 @@
 .profilepage-name input,
 .profilepage-name button {
   margin-top: 20px;
+}
+
+.wishListCard {
+  margin-left: -40px;
+}
+
+.wishListGame {
+  height: 75vh;
+  overflow-y: auto;
 }
 
 .profilePage .profile-config h2 {
@@ -61,7 +72,7 @@
   margin-top: -20px;
 }
 
-.profilepage-name img:hover {
+.add {
   cursor: pointer;
 }
 

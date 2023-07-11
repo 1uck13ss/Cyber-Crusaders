@@ -12,7 +12,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 
-
 const App = () => {
   const [gameList, setGameList] = useState([]);
   const [showLoginForm, setShowLoginForm] = useState(true);
@@ -23,7 +22,6 @@ const App = () => {
   const [recordsPerPage] = useState(10);
   const [user] = useAuthState(auth);
   const [emailSubscribed, setEmailSubscribed] = useState(false); // Track email subscription status
-
 
   const navigate = useNavigate();
 
@@ -147,9 +145,7 @@ const App = () => {
       <header>
         <div className="nav-container">
           <div className="logo">
-            <a className="cc">
-              CyberCrusaders
-            </a>
+            <a className="cc">CyberCrusaders</a>
             <div className="user-container">
               <div className="emailname">
                 {user && <span>Hello {user.email}</span>}
@@ -159,9 +155,9 @@ const App = () => {
                   My Profile
                 </Link>
               </div>
-                <button onClick={handleLogout} className="logout-button">
-                  Log out
-                </button>
+              <button onClick={handleLogout} className="logout-button">
+                Log out
+              </button>
             </div>
           </div>
           <nav>
@@ -267,22 +263,26 @@ const App = () => {
                 Games Updates Signup
               </p>
               {emailSubscribed ? (
-                <p className = "subscription"> Thank you for subscribing! :)</p>
+                <p className="subscription"> Thank you for subscribing! :)</p>
               ) : (
-              <form onSubmit={handleEmailSubscription} method="get" className="footer-form">
-                <input
-                  type="email"
-                  name="email_address"
-                  required
-                  placeholder="Your Email"
-                  autocomplete="off"
-                  className="input-field"
-                />
-                <br />
-                <button type="submit" className="btn" data-btn>
-                  Subscribe Now
-                </button>
-              </form>
+                <form
+                  onSubmit={handleEmailSubscription}
+                  method="get"
+                  className="footer-form"
+                >
+                  <input
+                    type="email"
+                    name="email_address"
+                    required
+                    placeholder="Your Email"
+                    autocomplete="off"
+                    className="input-field"
+                  />
+                  <br />
+                  <button type="submit" className="btn" data-btn>
+                    Subscribe Now
+                  </button>
+                </form>
               )}
             </div>
           </div>

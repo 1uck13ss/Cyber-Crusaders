@@ -1,0 +1,14 @@
+.comment img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: fill;
+}
+
+.comment .commentProfile {
+  display: flex;
+}
+
+.comment .commentText {
+  margin-left: 35px;
+}

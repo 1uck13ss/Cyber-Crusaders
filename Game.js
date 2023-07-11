@@ -186,9 +186,9 @@ const Game = () => {
   return (
     <div className="game">
       <header>
-        <div className="nav-container">
+        <div className="nav-container-game">
           <div className="logo">
-            <Link to="/home" className="cc">
+            <Link to="/home" className="gamecc">
               CyberCrusaders
             </Link>
             <Link to="/Profile" className="Profile">

@@ -36,7 +36,6 @@
   width: 100px;
   border-radius: 50%;
   object-fit: fill;
-  overflow: hidden;
 }
 
 .profilepage-name h2 {
@@ -80,7 +79,6 @@
 }
 
 .profilepage-name img {
-  overflow: visible;
   scale: 0.4;
   margin-top: 100px;
   margin-left: -25px;
@@ -130,6 +128,6 @@
   margin-top: 30px;
   margin-left: -50px;
   width: 75vw;
-  margin-left: -150px;
+  margin-left: -100px;
   margin-top: -30px;
 }

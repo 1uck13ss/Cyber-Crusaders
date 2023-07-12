@@ -30,6 +30,7 @@ const Game = () => {
   );
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
+  const [display, setDisplay] = useState(true);
 
   useEffect(() => {
     const fetchProfilePic = async () => {
@@ -198,50 +199,76 @@ const Game = () => {
           </div>
         </div>
       </header>
-      <div className="gameDetails">
-        <img src={imageUrl ? imageUrl : icon} alt="Product 1" />
-        <div className="gameInfo">
-          <h1>Summary</h1>
-          <h3>{gameDetails.summary}</h3>
-          <h2>Release Dates</h2>
-          {gameDetails.first_release_date ? (
-            <p>{convert(gameDetails.first_release_date)} </p>
-          ) : (
-            <p>No release dates available.</p>
-          )}
+      <div class="tab">
+        <button class="tablinks" onClick={() => setDisplay(true)}>
+          Description
+        </button>
+        <button class="tablinks" onClick={() => setDisplay(false)}>
+          Comment
+        </button>
+      </div>
+      <div className={display ? "show" : "hidden"}>
+        <div className="gameDescription">
+          <img
+            src={imageUrl ? imageUrl : icon}
+            alt="Product 1"
+            className="coverart"
+          />
+          <div className="gameInfo">
+            <h1>Summary</h1>
+            <h3>{gameDetails.summary}</h3>
+            <h1>Release Dates</h1>
+            {gameDetails.first_release_date ? (
+              <h3>{convert(gameDetails.first_release_date)} </h3>
+            ) : (
+              <h3>No release dates available.</h3>
+            )}
 
-          <h2>Platforms</h2>
-          {gameDetails.platforms && gameDetails.platforms.length > 0 ? (
-            <ul className="horizontal-list">
-              {gameDetails.platforms.map((platform) => (
-                <li>{platform.name}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No known information available.</p>
-          )}
+            <h1>Platforms</h1>
+            {gameDetails.platforms && gameDetails.platforms.length > 0 ? (
+              <ul className="horizontal-list">
+                {gameDetails.platforms.map((platform) => (
+                  <li>{platform.name}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No known information available.</p>
+            )}
 
-          <h2>Genres</h2>
-          {gameDetails.genres && gameDetails.genres.length > 0 ? (
-            <ul className="horizontal-list">
-              {gameDetails.genres.map((genre) => (
-                <li>{genre.name}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No known information available.</p>
-          )}
+            <h1>Genres</h1>
+            {gameDetails.genres && gameDetails.genres.length > 0 ? (
+              <ul className="horizontal-list">
+                {gameDetails.genres.map((genre) => (
+                  <li>{genre.name}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No known information available.</p>
+            )}
 
-          <button onClick={addToWishlist}> add to wishlist </button>
-          <h1> Comments </h1>
-          <Comment onSubmit={onSubmit} photoURL={photoURL}></Comment>
-          {comments.map((comment) => (
-            <Comments
-              Comment={comment}
-              display={shouldDisplay}
-              handleDelete={handleDelete}
-            />
-          ))}
+            <button onClick={addToWishlist}> add to wishlist </button>
+          </div>
+        </div>
+      </div>
+
+      <div className={display ? "hidden" : "show"}>
+        <div className="gamecomment">
+          <img
+            src={imageUrl ? imageUrl : icon}
+            alt="Product 1"
+            className="coverart"
+          />
+          <div className="commentsection">
+            <h1> Comments </h1>
+            <Comment onSubmit={onSubmit} photoURL={photoURL}></Comment>
+            {comments.map((comment) => (
+              <Comments
+                Comment={comment}
+                display={shouldDisplay}
+                handleDelete={handleDelete}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

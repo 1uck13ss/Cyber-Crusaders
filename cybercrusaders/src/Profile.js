@@ -7,6 +7,7 @@ import "./styles/Profile.css";
 import edit from "./assets/edit.png";
 import { Link } from "react-router-dom";
 import plus from "./assets/plus.jpg";
+import pbackground from "./assets/profilebackground.jpg";
 import WishListCard from "./WishListCard";
 
 const Profile = () => {
@@ -99,49 +100,56 @@ const Profile = () => {
     <div className="profilePage">
       <header>
         <div className="nav-container-profile">
-          <div className="logo">
+          <nav className="logo">
             <Link to="/home" className="profilecc">
               CyberCrusaders
             </Link>
+          </nav>
             <div className="profile-config">
               <div className="profile">
                 <p>Profile</p>
-                <img src={photoURL} alt="profile pic" className="profile-pic" />
-                <img
-                  src={plus}
-                  alt="add"
-                  className="add"
-                  onClick={() => inputRef.current.click()}
-                />
-                <input
-                  type="file"
-                  ref={inputRef}
-                  onChange={upload}
-                  accept="image/*"
-                  style={{ display: "none" }}
-                />
-                <div className="profilepage-name">
-                  {editingName ? (
-                    <>
-                      <h2> hello, </h2>
-                      <input
-                        type="text"
-                        value={newName}
-                        ref={inputRef}
-                        onChange={handleInputChange}
-                        onKeyPress={handleKeyPress}
-                      />
-                      <button onClick={saveName}>Save</button>
-                      <button onClick={cancelNameChange}>Cancel</button>
-                    </>
-                  ) : (
-                    <>
-                      <h2>hello, {name}</h2>
-                      <img src={edit} alt="edit" onClick={handleNameChange} />
-                    </>
-                  )}
+                <div className="pbackground" style={{ backgroundImage: `url(${[pbackground]})` }}></div>
+                  <img src={photoURL} alt="profile pic" className="profile-pic"/>
+                  <img
+                    src={plus}
+                    alt="add"
+                    className="add"
+                    onClick={() => inputRef.current.click()}
+                  />
+                  <input
+                    type="file"
+                    ref={inputRef}
+                    onChange={upload}
+                    accept="image/*"
+                    style={{ display: "none" }}
+                  />
+                  <div className="profilepage-name">
+                    {editingName ? (
+                      <>
+                        <h2> hello, </h2>
+                        <input
+                          type="text"
+                          value={newName}
+                          ref={inputRef}
+                          onChange={handleInputChange}
+                          onKeyPress={handleKeyPress}
+                          style={{ backgroundColor: 'black' }}
+                          maxLength={30}
+                        />
+                        <button onClick={saveName} style={{ backgroundColor: 'green' }}>Save</button>
+                        <button onClick={cancelNameChange} style={{ backgroundColor: 'grey' }}>Cancel</button>
+                      </>
+                    ) : (
+                      <>
+                        <h2>hello, {name}</h2>
+                        <img src={edit} alt="edit" onClick={handleNameChange} />
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
+
+                
+              <div className="wishlistbackground">
               <div className="profile-wishList">
                 <h1> Wish List </h1>
                 <ul>
@@ -168,14 +176,14 @@ const Profile = () => {
                 </ul>
               </div>
             </div>
-          </div>
+            </div>
         </div>
       </header>
-      <ul className="wishListGame">
+      { /*<ul className="wishListGame">
         {list.map((game) => (
           <li key={game.gameDetails.name}>{game.gameDetails.name}</li>
         ))}
-      </ul>
+        </ul>*/}
       {loading && <p>Loading...</p>}
     </div>
   );

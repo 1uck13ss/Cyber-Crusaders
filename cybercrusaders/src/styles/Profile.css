@@ -10,10 +10,9 @@
 }
 
 .profilecc {
-  margin-right: 700px;
+  margin-right: 800px;
   margin-top: 10px;
 }
-
 
 .profile-config p {
   font-size: 35px;
@@ -21,8 +20,7 @@
 
 .profilePage .add {
   z-index: 1;
-  margin-left: -80px;
-  margin-bottom: -60px;
+  margin-bottom: -140px;
   scale: 0.3;
 }
 
@@ -39,14 +37,14 @@
   overflow: hidden;
 }
 
-.profilepage-name input {
-  margin-left: 2px;
-  width: 150px;
+.profilepage-name h2{
+  margin-top: 100px;
+  margin-right: 20px;
 }
 
 .profilepage-name input,
 .profilepage-name button {
-  margin-top: 20px;
+  margin-top: 80px;
 }
 
 .nav-container-profile {
@@ -65,12 +63,6 @@
   overflow-y: auto;
 }
 
-.profilePage .profile-config h2 {
-  margin-top: 30px;
-  margin-left: -20px;
-  font-size: 20px;
-}
-
 .profilepage-name {
   display: flex;
 }
@@ -78,17 +70,24 @@
 .profilepage-name img {
   overflow: visible;
   scale: 0.2;
-  margin-left: -30px;
-  margin-top: -20px;
+  margin-left: -25px;
+  margin-top: 45px;
 }
 
 .add {
   cursor: pointer;
 }
 
+.profile-pic{
+  margin-top: 80px;
+  transform: scale(2.5);
+
+}
+
 .profile-config {
   display: flex;
   margin-right: auto;
+  justify-content: space-between;
 }
 
 .profile-config > div {
@@ -101,6 +100,19 @@
   padding-left: 100px;
 }
 
-.profile-config .profile-wishList {
-  margin-left: -100px;
+.pbackground {
+  width: 200px;
+  height: 200px;
+  margin-left: -50px;
+  margin-top: 30px;
+  background-size: contain;
+  position:absolute;
+  z-index: -1;
+  transform: scale(2.0);
+}
+
+.wishlistbackground {
+  background-color: rgb(0, 213, 255);
+  z-index: -1;
+  transform:scale(1.2);
 }

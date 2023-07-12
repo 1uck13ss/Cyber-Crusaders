@@ -15,6 +15,10 @@ header {
   height: 40px;
 }
 
+.nav-container .cc:hover {
+  cursor: pointer;
+}
+
 .nav-container,
 .nav-container1 {
   position: fixed;

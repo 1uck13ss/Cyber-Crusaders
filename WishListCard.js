@@ -56,7 +56,7 @@ const WishListCard = (game) => {
         <h3> {convert(game.first_release_date)} </h3>
         <img
           className="redX"
-          src="https://media.istockphoto.com/id/1172913697/vector/red-x-shape-light-on-black-background.jpg?s=612x612&w=0&k=20&c=F3JbDWqqbNq9N2Cqq9QKSCcwQJJop9_gomEbYUi5flo="
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIiq7sZW1MwcJYH5gj-7UsvNp6K379AzJ_yg&usqp=CAU"
           alt="X"
           onClick={remove}
         />

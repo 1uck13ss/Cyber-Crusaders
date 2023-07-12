@@ -46,7 +46,7 @@ header {
 }
 
 .emailname::before {
-  content: ""; 
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -58,7 +58,7 @@ header {
 }
 
 .emailname::after {
-  content: ""; 
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -97,6 +97,14 @@ header {
   border-color: transparent;
   border-radius: 5px;
   background-color: rgb(35, 189, 35);
+  transition: background-color 0.3s, text-decoration 0.3s;
+}
+
+.logout-button:hover {
+  cursor: pointer;
+  background-color: rgb(50, 205, 50);
+  text-decoration: underline;
+  color: #0026ff;
 }
 
 /*.logo {
@@ -168,7 +176,6 @@ nav a {
   margin: 10px;
 }
 
-
 .product-container img {
   width: 100%;
   height: auto;
@@ -186,14 +193,11 @@ nav a {
   }
 }
 
-
 .pagination {
   display: flexbox;
   justify-content: center;
   margin-top: 10px;
 }
-
-
 
 /*-----------------------*/
 /*-------FOOTER----------*/
@@ -201,6 +205,13 @@ nav a {
 
 .footer {
   margin-top: -90px;
+}
+
+.footer-profile {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin-left: -50px;
 }
 
 .footer-top .container {
@@ -326,12 +337,14 @@ a:hover .fa-telegram {
 }
 
 .btn {
+  background-color: black;
   outline: none;
   border: none;
 }
 
 .copyright {
   margin-top: 20px;
+  margin-left: -100px;
   color: white;
 }
 

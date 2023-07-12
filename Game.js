@@ -93,7 +93,6 @@ const Game = () => {
     const list = comments.filter((a) => {
       return a.index !== commentID;
     });
-    console.log(list);
     setComments(list);
     var db_ref = collection(db, gameDetails.id.toString());
     let batch = writeBatch(db);
@@ -235,7 +234,7 @@ const Game = () => {
 
           <button onClick={addToWishlist}> add to wishlist </button>
           <h1> Comments </h1>
-          <Comment onSubmit={onSubmit}></Comment>
+          <Comment onSubmit={onSubmit} photoURL={photoURL}></Comment>
           {comments.map((comment) => (
             <Comments
               Comment={comment}

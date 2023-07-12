@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "./styles/Comment.css";
 
-const Comment = ({ onSubmit }) => {
+const Comment = ({ onSubmit, photoURL }) => {
   const [text, setText] = useState("");
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -8,16 +9,21 @@ const Comment = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <textarea
-        className="comment-form-textarea"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      ></textarea>
-      <button type="submit">submit</button>
-      <button type="button" onClick={() => setText("")}>
-        cancel
-      </button>
+    <form className="comment-form" onSubmit={handleFormSubmit}>
+      <img src={photoURL} alt="profile-pic" className="comment-pp" />
+      <div>
+        <textarea
+          className="comment-form-textarea"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        ></textarea>
+        <div>
+          <button type="submit">Submit</button>
+          <button type="button" onClick={() => setText("")}>
+            Cancel
+          </button>
+        </div>
+      </div>
     </form>
   );
 };

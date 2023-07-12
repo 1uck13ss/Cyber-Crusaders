@@ -29,6 +29,10 @@
   background-color: black;
 }
 
+.comment-form button:hover {
+  cursor: pointer;
+}
+
 .comment-form button:last-child {
   margin-right: 0;
 }

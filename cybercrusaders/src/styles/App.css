@@ -48,7 +48,7 @@ header {
 .emailname::before {
   content: "";
   position: absolute;
-  width: 100%;
+  width: calc(100% + 10px);
   height: 2px;
   bottom: -3%;
   background-color: #51ff00;
@@ -60,7 +60,7 @@ header {
 .emailname::after {
   content: "";
   position: absolute;
-  width: 100%;
+  width: calc(100% + 10px);
   height: 2px;
   bottom: -3%;
   background-color: #c8ff00;

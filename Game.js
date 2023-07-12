@@ -23,7 +23,6 @@ import Comments from "./Comments";
 const Game = () => {
   const location = useLocation();
   const gameDetails = location.state?.gameDetails;
-  const [isAdded, setIsAdded] = useState(false);
   const [name, setName] = useState("Guest");
   const [photoURL, setPhotoURL] = useState(
     "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
@@ -31,6 +30,8 @@ const Game = () => {
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const [display, setDisplay] = useState(true);
+  const [isAdded, setIsAdded] = useState(false);
+  const [isInWishList, setIsInWishList] = useState(false);
 
   useEffect(() => {
     const fetchProfilePic = async () => {
@@ -152,8 +153,14 @@ const Game = () => {
       });
 
       await batch.commit();
+      setIsInWishList(false);
     } else {
+      setIsAdded(true);
+      setTimeout(() => {
+        setIsAdded(false);
+      }, 1000);
       await addDoc(dbRef, { gameDetails });
+      setIsInWishList(true);
     }
   };
 
@@ -245,8 +252,9 @@ const Game = () => {
             ) : (
               <p>No known information available.</p>
             )}
-
-            <button onClick={addToWishlist}> add to wishlist </button>
+            <button onClick={addToWishlist} style={{ backgroundColor: isAdded ? "black" : isInWishList ? "red" : "green" }}>
+              {isAdded ? "Adding..." : (isInWishList ? "Remove from Wish List" : "Add to Wish List")}
+            </button>
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ const Comment = ({ onSubmit, photoURL }) => {
           className="comment-form-textarea"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          placeholder="Add a comment"
         ></textarea>
         <div>
           <button type="submit">Submit</button>

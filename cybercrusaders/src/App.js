@@ -10,7 +10,8 @@ import Platform from "./Platform";
 import { motion, AnimatePresence, color } from "framer-motion";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "./utils/firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { collection, onSnapshot, getDocs } from "firebase/firestore";
 
 const App = () => {
   const [gameList, setGameList] = useState([]);
@@ -21,6 +22,10 @@ const App = () => {
   const [platforms, setPlatforms] = useState([]);
   const [recordsPerPage] = useState(10);
   const [user] = useAuthState(auth);
+  const [name, setName] = useState("guest");
+  const [photo, setPhoto] = useState(
+    "https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg"
+  );
   const [emailSubscribed, setEmailSubscribed] = useState(false); // Track email subscription status
 
   const navigate = useNavigate();
@@ -35,8 +40,32 @@ const App = () => {
   };
 
   useEffect(() => {
+    const fetchProfilePic = async () => {
+      const storage = getStorage();
+      const pic = ref(storage, "images/" + auth.currentUser.uid);
+      try {
+        const url = await getDownloadURL(pic);
+        setPhoto(url);
+      } catch (error) {
+        console.log("No profile pic found");
+      }
+    };
+
+    const fetchUserName = async () => {
+      const username = collection(db, "user");
+      const snapshot = await getDocs(username);
+      snapshot.forEach((doc) => {
+        if (doc.id === auth.currentUser.uid) {
+          setName(doc.data().name);
+        }
+      });
+    };
+
     fetchInfo();
-  }, []);
+    fetchProfilePic();
+    console.log(photo);
+    fetchUserName();
+  }, [photo]);
 
   useEffect(() => {
     const updateGameList = () => {
@@ -145,8 +174,7 @@ const App = () => {
       <header>
         <div className="nav-container">
           <div className="logo">
-            <a className="cc">
-              CyberCrusaders</a>
+            <a className="cc">CyberCrusaders</a>
           </div>
           <nav className="platform-filter">
             <Platform filterByPlatform={filterCondition} />
@@ -155,9 +183,7 @@ const App = () => {
 
         <div className="nav-container1">
           <div className="user-container">
-            <div className="emailname">
-              {user && <span>Hello {user.email}</span>}
-            </div>
+            <div className="emailname">{user && <span>Hello {name}</span>}</div>
             <div className="profile">
               <Link to="/Profile" className="Profile">
                 My Profile
@@ -212,15 +238,14 @@ const App = () => {
         <div className="section footer-top">
           <div className="container">
             <div className="footer-brand">
-              <a className="logo">
-                <img
-                  src={footerlogo}
-                  width="75"
-                  height="75"
-                  loading="lazy"
-                  alt="CC logo"
-                />
-              </a>
+              <img
+                className="footer-profile"
+                src={photo}
+                width="75"
+                height="75"
+                loading="lazy"
+                alt="CC logo"
+              />
             </div>
             <div className="footer-list-img">
               <img src={joystick} alt="logo" />

@@ -13,9 +13,10 @@
 }
 
 .comment-form textarea {
-  width: 100%;
+  width: 60vw;
   margin-bottom: 10px;
   resize: vertical;
+  color: black;
 }
 
 .comment-form-textarea {
@@ -25,6 +26,7 @@
 
 .comment-form button {
   margin-right: 10px;
+  background-color: black;
 }
 
 .comment-form button:last-child {

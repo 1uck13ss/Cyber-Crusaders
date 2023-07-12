@@ -112,6 +112,5 @@
 
 .wishlistbackground {
   background-color: rgb(0, 213, 255);
-  z-index: -1;
   transform:scale(1.2);
 }

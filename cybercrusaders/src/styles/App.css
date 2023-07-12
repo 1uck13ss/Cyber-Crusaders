@@ -170,27 +170,9 @@ nav a {
   justify-content: flex-start;
 }
 
-.product-container > div {
-  width: 20%; /* Divide the width equally among 5 columns */
-  max-width: 250px; /* Adjust the max-width as needed */
-  margin: 10px;
-}
-
 .product-container img {
   width: 100%;
   height: auto;
-}
-
-@media (max-width: 768px) {
-  .product-container > div {
-    width: 25%; /* Display 4 columns on smaller screens */
-  }
-}
-
-@media (max-width: 576px) {
-  .product-container > div {
-    width: 50%; /* Display 2 columns on even smaller screens */
-  }
 }
 
 .pagination {

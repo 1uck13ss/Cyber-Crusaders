@@ -69,11 +69,6 @@
   margin-left: -40px;
 }
 
-.wishListGame {
-  height: 500px;
-  overflow-y: auto;
-}
-
 .profilepage-name {
   display: flex;
 }
@@ -125,9 +120,9 @@
 
 .profile-wishList {
   background-color: black;
-  margin-top: 30px;
-  margin-left: -50px;
-  width: 75vw;
-  margin-left: -100px;
+  margin-left: -10px;
   margin-top: -30px;
+  width: 75vw;
+  overflow-y: auto;
+  height: calc(100vh - 200px);
 }

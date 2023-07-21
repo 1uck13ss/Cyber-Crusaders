@@ -1,0 +1,239 @@
+* {
+  font-family: "Chakra Petch, sans-serif";
+  color: white;
+}
+
+.wrapper {
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+  background-size: cover;
+  background-position: center;
+}
+
+.body-container {
+  display: flex;
+  width: 98.9vw;
+}
+
+.wrapper {
+  position: absolute;
+  top: 180px;
+}
+
+.filter {
+  margin-bottom: 10px;
+  margin-top: -30px;
+  margin-left: 30px;
+  margin-right: 3px;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 30px;
+  height: 30%;
+  background-color: black;
+  background-image: none;
+  justify-content: flex-start;
+}
+
+.filterlist {
+  display: flex;
+  justify-content: center;
+}
+.product-container img {
+  width: 100%;
+  height: 250px;
+}
+
+.pagination {
+  display: flexbox;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.footer {
+  margin-top: -90px;
+  margin-left: 50px;
+  height: 300px;
+}
+
+.noShow {
+  display: none;
+}
+
+.empty p {
+  font-size: 65px;
+  margin-left: 33vw;
+}
+
+.footer-profile {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin-left: -50px;
+  object-fit: fill;
+}
+
+.footer-top .container {
+  display: grid;
+  gap: 35px;
+  margin-top: 100px;
+}
+
+.footer-list-desc {
+  margin-right: -30px;
+  padding-right: 20px;
+}
+
+.footer-list {
+  margin-left: 8px;
+  width: 180px;
+  height: 30vh;
+}
+
+.social-media {
+  display: flex;
+  gap: 10px;
+  font-size: 2em;
+}
+
+.social-media a:hover {
+  box-shadow: inset 4px 4px 6px -2px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+    -0.5px -0.5px 0px -1px rgba(255, 255, 255, 1),
+    0.5px 0.5px 0px rgba(0, 0, 0, 0.15), 0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 124, 196, 0.1);
+  transform: translateY(2px);
+}
+
+a:hover .fa-linkedin {
+  color: #0026ff;
+}
+a:hover .fa-github {
+  color: #837272;
+}
+a:hover .fa-telegram {
+  color: #00aeff;
+}
+
+.footer-list-title {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+  position: relative;
+  padding-block-end: 10px;
+  margin-block-end: 20px;
+  max-width: 100%;
+}
+
+.footer-list-img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 100%;
+  margin-left: -50px;
+}
+
+.footer-list-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.has-before,
+.has-after {
+  position: relative;
+}
+
+.has-before::before,
+.has-after::after {
+  content: "";
+  position: absolute;
+}
+
+.footer-list-title::after {
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 4px;
+  background-color: #b700ff;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  transition: 1;
+  margin-left: -40px;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: purple;
+  font-weight: bold;
+}
+
+.contact-item .span {
+  color: skyblue;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.contact-item:not(:last-child) {
+  margin-block-end: 15px;
+}
+
+.contact-item:not(:first-child) {
+  margin-block-end: 15px;
+}
+
+.contact-link {
+  color: white;
+}
+
+.input-field {
+  color: #0073e6;
+  font-size: 15px;
+  padding: 18px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgb(4, 255, 42, 0.8); /* behind the scenes lighting */
+  border: 2px solid rgb(248, 248, 248); /* the frame */
+  margin-block-end: 15px; /* make space between "Your email" and "Subscribe now" */
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: #0073e6;
+}
+
+.btn {
+  background-color: black;
+  outline: none;
+  border: none;
+}
+
+.copyright {
+  margin-top: 20px;
+  margin-left: -100px;
+  color: white;
+}
+
+.footer-top .container {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.footer .logo img {
+  width: 170px;
+}
+
+.login-form-container {
+  background-color: transparent;
+}
+
+.navbar-search {
+  margin-top: 5px;
+  color: white;
+  margin-bottom: 5px;
+  cursor: text;
+}

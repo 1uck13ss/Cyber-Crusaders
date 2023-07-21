@@ -1,0 +1,34 @@
+.comment-form {
+  display: flex;
+  align-items: flex-start;
+  width: 60px + 60vw;
+}
+
+.comment-form img {
+  object-fit: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.comment-form button {
+  margin-right: 10px;
+  background-color: black;
+}
+
+.mb-3 {
+  width: 60vw;
+}
+
+.custom-floating-label {
+  margin-bottom: 0 !important;
+}
+
+.comment-form button:hover {
+  cursor: pointer;
+}
+
+.comment-form button:last-child {
+  margin-left: 5px;
+}

@@ -1,0 +1,125 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.nav-container-game {
+  display: block;
+}
+
+.game header {
+  z-index: 100;
+}
+
+.gameBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: url(https://media.istockphoto.com/id/1158734314/video/abstract-background.jpg?s=640x640&k=20&c=Yj9WUFCh4frKNkG6H1tvVL0EGz1bnVUkLSPrgVEIRxo=) !important;
+}
+
+.tab {
+  overflow: hidden;
+  background-color: transparent;
+  position: absolute;
+  top: 210px;
+  left: 80px;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 20%;
+}
+
+.tab button {
+  background-color: rgb(0, 0, 0);
+  color: rgb(3, 255, 255);
+}
+
+.tab button::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgb(3, 255, 255);
+  transform: rotate(-45deg);
+  margin-right: 6px;
+}
+
+.gameDescription img {
+  margin-left: 20px;
+  margin-top: 55px;
+  height: 380px;
+  width: 380px;
+}
+
+.gameDescription {
+  display: flex;
+  margin-top: 205px;
+  width: 90vw;
+  height: 65vh;
+  margin-left: 65px;
+  border-style: solid;
+  border-width: 4px;
+  border-color: white;
+  background-image: url("https://user-images.githubusercontent.com/26748614/96337246-f14d4580-1085-11eb-8793-a86d929e034d.jpg");
+  background-image: cover;
+  border-radius: 20px;
+}
+
+.gameDescription h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.gameDescription h3 {
+  font-size: 15px;
+}
+
+.gameDescription ul {
+  display: flex;
+}
+
+.gameDescription li {
+  margin-left: 30px;
+}
+
+.gameDescription ul li:first-child {
+  margin-left: -10px;
+}
+
+.gameInfo {
+  margin-left: 30px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.gamecomment {
+  display: flex;
+}
+
+.gamecomment .coverart {
+  margin-top: 20px;
+  height: 400px;
+}
+
+.gamecomment .commentsection {
+  margin-left: 250px;
+  margin-top: 20px;
+}
+
+.gamecomment .other {
+  margin-bottom: 10px;
+}

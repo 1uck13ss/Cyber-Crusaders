@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Cyber-Crusaders/static/css/main.0c1b5f12.css",
-    "main.js": "/Cyber-Crusaders/static/js/main.16cbe886.js",
+    "main.js": "/Cyber-Crusaders/static/js/main.8aa29160.js",
     "static/media/formbackground.jpg": "/Cyber-Crusaders/static/media/formbackground.f8b5d52f7916d45dcf99.jpg",
     "static/media/profilebackground.jpg": "/Cyber-Crusaders/static/media/profilebackground.7f932a294ebaf08163e2.jpg",
     "static/media/icon.jpg": "/Cyber-Crusaders/static/media/icon.fb109b12ae7bba63e858.jpg",
     "static/media/joystick.jpg": "/Cyber-Crusaders/static/media/joystick.3bfbc1f7b4d7eee17e14.jpg",
     "index.html": "/Cyber-Crusaders/index.html",
     "main.0c1b5f12.css.map": "/Cyber-Crusaders/static/css/main.0c1b5f12.css.map",
-    "main.16cbe886.js.map": "/Cyber-Crusaders/static/js/main.16cbe886.js.map"
+    "main.8aa29160.js.map": "/Cyber-Crusaders/static/js/main.8aa29160.js.map"
   },
   "entrypoints": [
     "static/css/main.0c1b5f12.css",
-    "static/js/main.16cbe886.js"
+    "static/js/main.8aa29160.js"
   ]
 }
